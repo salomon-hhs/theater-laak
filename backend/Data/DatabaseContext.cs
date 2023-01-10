@@ -23,6 +23,17 @@ public class DatabaseContext : IdentityDbContext
             .HasOne(db => db.Deelnemer)
             .WithMany(d => d.DeelnemersMetBands)
             .HasForeignKey(db => db.DeelnemerId);
+
+        modelBuilder.Entity<Opvoering>()
+            .HasKey(o => new { o.BandId, o.EvenementId });
+        modelBuilder.Entity<Opvoering>()
+            .HasOne(o => o.Evenement)
+            .WithMany(e => e.Opvoeringen)
+            .HasForeignKey(o => o.EvenementId);
+        modelBuilder.Entity<Opvoering>()
+            .HasOne(o => o.Band)
+            .WithMany(b => b.Opvoeringen)
+            .HasForeignKey(o => o.BandId);
     }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

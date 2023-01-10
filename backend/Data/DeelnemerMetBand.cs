@@ -7,4 +7,6 @@ public class DeelnemerMetBand
     
     public string DeelnemerId { get; set; }
     public Deelnemer Deelnemer { get; set; }
+    
+    public bool IsBandLeider { get; set; }
 }

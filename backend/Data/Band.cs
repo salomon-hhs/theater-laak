@@ -8,4 +8,5 @@ public class Band
     public string? Website { get; set; }
     
     public ICollection<DeelnemerMetBand> DeelnemersMetBands { get; set; }
+    public ICollection<Opvoering> Opvoeringen { get; set; }
 }
