@@ -53,11 +53,11 @@ public class DatabaseContext : IdentityDbContext
         modelBuilder.Entity<Zaal>()
             .HasMany(z => z.Evenementen)
             .WithOne(e => e.Zaal);
-    }
-
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        base.OnConfiguring(optionsBuilder);
+        
+        //zaal 1--* rang relation
+        modelBuilder.Entity<Zaal>()
+            .HasMany(z => z.Rangen)
+            .WithOne(r => r.Zaal);
     }
 
     public DbSet<Gebruiker> Gebruikers { get; set; }
@@ -67,4 +67,5 @@ public class DatabaseContext : IdentityDbContext
     public DbSet<Evenement> Evenementen { get; set; }
     public DbSet<Ticket> Tickets { get; set; }
     public DbSet<Zaal> Zalen { get; set; }
+    public DbSet<Rang> Rangen { get; set; }
 }
