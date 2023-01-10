@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using backend.Data;
 
@@ -10,9 +11,11 @@ using backend.Data;
 namespace backend.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20230110170341_gebruiker_ticket_evenement_relation")]
+    partial class gebruikerticketevenementrelation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.1");
@@ -260,12 +263,7 @@ namespace backend.Migrations
                     b.Property<DateTime>("Datum")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("ZaalId")
-                        .HasColumnType("INTEGER");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("ZaalId");
 
                     b.ToTable("Evenementen");
                 });
@@ -303,20 +301,6 @@ namespace backend.Migrations
                     b.HasIndex("GebruikerId");
 
                     b.ToTable("Tickets");
-                });
-
-            modelBuilder.Entity("backend.Data.Zaal", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("Toegankelijk")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Zalen");
                 });
 
             modelBuilder.Entity("backend.Data.Deelnemer", b =>
@@ -417,17 +401,6 @@ namespace backend.Migrations
                     b.Navigation("Deelnemer");
                 });
 
-            modelBuilder.Entity("backend.Data.Evenement", b =>
-                {
-                    b.HasOne("backend.Data.Zaal", "Zaal")
-                        .WithMany("Evenementen")
-                        .HasForeignKey("ZaalId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Zaal");
-                });
-
             modelBuilder.Entity("backend.Data.Opvoering", b =>
                 {
                     b.HasOne("backend.Data.Band", "Band")
@@ -496,11 +469,6 @@ namespace backend.Migrations
                     b.Navigation("Opvoeringen");
 
                     b.Navigation("Tickets");
-                });
-
-            modelBuilder.Entity("backend.Data.Zaal", b =>
-                {
-                    b.Navigation("Evenementen");
                 });
 
             modelBuilder.Entity("backend.Data.Deelnemer", b =>

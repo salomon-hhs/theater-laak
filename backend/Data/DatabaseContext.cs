@@ -13,6 +13,7 @@ public class DatabaseContext : IdentityDbContext
         base.OnModelCreating(modelBuilder);
         modelBuilder.Entity<Deelnemer>().ToTable("Deelnemers");
 
+        //band *--* deelnemer relation
         modelBuilder.Entity<DeelnemerMetBand>()
             .HasKey(db => new { db.BandId, db.DeelnemerId });
         modelBuilder.Entity<DeelnemerMetBand>()
@@ -24,6 +25,7 @@ public class DatabaseContext : IdentityDbContext
             .WithMany(d => d.DeelnemersMetBands)
             .HasForeignKey(db => db.DeelnemerId);
 
+        //band *--* evenement relation
         modelBuilder.Entity<Opvoering>()
             .HasKey(o => new { o.BandId, o.EvenementId });
         modelBuilder.Entity<Opvoering>()
@@ -34,6 +36,23 @@ public class DatabaseContext : IdentityDbContext
             .HasOne(o => o.Band)
             .WithMany(b => b.Opvoeringen)
             .HasForeignKey(o => o.BandId);
+        
+        //gebruiker *--* ticket relation
+        modelBuilder.Entity<Ticket>()
+            .HasKey(t => new { t.Id, t.EvenementId, t.GebruikerId });
+        modelBuilder.Entity<Ticket>()
+            .HasOne(t => t.Gebruiker)
+            .WithMany(g => g.Tickets)
+            .HasForeignKey(o => o.GebruikerId);
+        modelBuilder.Entity<Ticket>()
+            .HasOne(t => t.Evenement)
+            .WithMany(e => e.Tickets)
+            .HasForeignKey(t => t.EvenementId);
+        
+        //evenement *--1 zaal relation
+        modelBuilder.Entity<Zaal>()
+            .HasMany(z => z.Evenementen)
+            .WithOne(e => e.Zaal);
     }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -45,4 +64,7 @@ public class DatabaseContext : IdentityDbContext
     public DbSet<Deelnemer> Deelnemers { get; set; }
     public DbSet<Band> Bands { get; set; }
     public DbSet<DeelnemerMetBand> DeelnemerMetBands { get; set; }
+    public DbSet<Evenement> Evenementen { get; set; }
+    public DbSet<Ticket> Tickets { get; set; }
+    public DbSet<Zaal> Zalen { get; set; }
 }
