@@ -1,8 +1,12 @@
 using backend.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<DatabaseContext>(options =>
+        options.UseSqlite("data source=laak.db")
+    );
 
 // Add services to the container.
 
