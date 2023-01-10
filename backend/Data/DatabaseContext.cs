@@ -49,6 +49,10 @@ public class DatabaseContext : IdentityDbContext
             .WithMany(e => e.Tickets)
             .HasForeignKey(t => t.EvenementId);
         
+        //ticket *--1 rang relation
+        modelBuilder.Entity<Ticket>()
+            .HasOne(t => t.Rang);
+
         //evenement *--1 zaal relation
         modelBuilder.Entity<Zaal>()
             .HasMany(z => z.Evenementen)

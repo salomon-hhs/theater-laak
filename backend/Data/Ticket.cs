@@ -9,4 +9,6 @@ public class Ticket
     
     public int EvenementId { get; set; }
     public Evenement Evenement { get; set; }
+    
+    public Rang Rang { get; set; }
 }
