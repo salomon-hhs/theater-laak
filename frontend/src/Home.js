@@ -4,7 +4,7 @@ import Register from './Components/Register';
 
 function App() {
   const [currentForm, setCurrentForm] = useState('Login');
-
+  
   const toggleForm = (formName) => {
     setCurrentForm(formName);
   }

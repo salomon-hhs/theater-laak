@@ -15,8 +15,6 @@ export default function Login(props){ /*props is a way to pass on value to child
         console.log("Captcha value:", value);
     }
 
-   
-
     return(
        
         <div className="auth-form bg-dark">
@@ -52,5 +50,6 @@ export default function Login(props){ /*props is a way to pass on value to child
 
             </div>
         </div>
+        
     );
 }

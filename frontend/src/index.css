@@ -271,7 +271,7 @@ Correct the cursor style of increment and decrement buttons in Safari.
   outline-offset: -2px;
   /* 2 */
 }
-
+ 
 /*
 Remove the inner padding in Chrome and Safari on macOS.
 */
@@ -558,6 +558,7 @@ video {
   --tw-backdrop-saturate:  ;
   --tw-backdrop-sepia:  ;
 }
+
 
 .text-3xl {
   font-size: 1.875rem;
