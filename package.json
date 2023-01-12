@@ -1,7 +1,0 @@
-{
-  "dependencies": {
-    "react-google-recaptcha": "^2.1.0",
-    "react-hook-form": "^7.41.5"
-  }
-}
-

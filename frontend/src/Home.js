@@ -14,7 +14,7 @@ function App() {
       <h1 className="text-3xl">Theater Laak</h1>
       <p>Welkom op de website van Theater Laak. Deze website is momenteel onder constructie.</p>
       {
-        currentForm === "login" ? <Login onFormSwitch={toggleForm} /> : <Register onFormSwitch={toggleForm} />
+        currentForm === "login" ? <Login/> : <Register/>
 
       }
     </div>

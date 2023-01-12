@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import Link from 'react-router-dom';
 import ReCAPTCHA from "react-google-recaptcha";
 
 
@@ -43,9 +44,13 @@ export default function Login(props){ /*props is a way to pass on value to child
                     onChange={onChange}
                 />
 
-                <button className="link-btn" onClick={() => props.onFormSwitch('register')}>Geen account? Account aanmaken</button>
+                <button className="link-btn">
+                    <Link to={'register'}> geen account? Account aanmaken</Link>
+                </button>
                 <br/>
-                <button className="link-btn m-5" onClick={() => props.onFormSwitch('passwVergeten')}>Wachtwoord vergeten?</button>
+                <button className="link-btn m-5">
+                    <Link to={'wachtwoord_vergeten'}> Wachtwoord vergeten?</Link>
+                </button>
 
 
             </div>

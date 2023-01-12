@@ -6,6 +6,9 @@ import {
 } from "react-router-dom";
 import './index.css';
 import Home from './Home';
+import Login from 'Components/Login';
+import Register from 'Components/Register';
+import PasswVergeten from 'Components/PasswVergeten';
 import reportWebVitals from './reportWebVitals';
 
 const router = createBrowserRouter([
@@ -13,6 +16,18 @@ const router = createBrowserRouter([
     path: "/",
     element: <Home />
   },
+  {
+    path: "/login",
+    element: <Login/>
+  },
+  {
+    path: "/register",
+    element: <Register/>
+  },
+  {
+    path: "/wachtwoord_vergeten",
+    element: <PasswVergeten/>
+  }
 ])
 
 ReactDOM.createRoot(document.getElementById("root")).render(
