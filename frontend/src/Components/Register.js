@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-
+import {Link} from 'react-router-dom';
 
 export default function Register(props){
     const[vnaam,setVnaam]= useState(''); 
@@ -19,13 +19,13 @@ export default function Register(props){
             <div className="col-1">
                 <h2 className=" text-2xl text-left text-white m-5">Inschrijven</h2>{/*text-[#bada55] to add color to text when using tailwind*/}
 
-                <form className="register-form" onSubmit={handleSubmit}>
+                <form className="register-form text-black" onSubmit={handleSubmit}>
 
                     <label htmlFor="voornaam">Naam</label>
-                    <input value={vnaam} name="voornaam" id="vnaam"/>
+                    <input value={vnaam} onChange={(e) => setVnaam(e.target.value)} name="voornaam" id="vnaam"/>
 
                     <label htmlFor="achternaam">Achternaam</label>
-                    <input value={anaam}  name="achternaam" id="anaam"/>
+                    <input value={anaam} onChange={(e) => setAnaam(e.target.value)}name="achternaam" id="anaam"/>
 
                     <label htmlFor="email">Email</label>
                     <input value={email} onChange={(e) => setEmail(e.target.value)} type="email"
@@ -38,14 +38,14 @@ export default function Register(props){
                     title="Moet minimaal één cijfer en één hoofdletter en kleine letter bevatten, en minimaal 8 of meer tekens"/>     
 
                     <label htmlFor="passwordConformation">Wachtwoord herhalen</label>
-                    <input value={passw} onChange={(e) => setPassw(e.target.value)} type="password"
+                    <input value={passw_conf} onChange={(e) => setPassw_conf(e.target.value)} type="password"
                     pattern="/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{7,}$/"
                     />                           
 
                     <button className="bg-white hover:bg-red-600 py-2 px-8 rounded text-black m-5" type="submit">Account Aanmaken</button>
                 </form>
 
-                <button className="link-btn m-5" onClick={() => props.onFormSwitch('login')}>Heb al een account? Log hier in</button>
+                <Link to={'/inloggen'} className="link-btn m-5">Heeft u al een account? Dan kunt u hier inloggen.</Link>
 
             </div>
         </div>

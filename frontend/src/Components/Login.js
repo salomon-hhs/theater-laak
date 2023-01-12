@@ -22,7 +22,7 @@ export default function Login(props){ /*props is a way to pass on value to child
             <div className="col-1">
                 <h2 className="text-2xl text-left text-white m-5">Inloggen</h2>
 
-                <form className="login-form" onSubmit={handleSubmit}>
+                <form className="login-form text-black" onSubmit={handleSubmit}>
 
                     <label htmlFor="email">Email</label>
                     <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" 
@@ -45,11 +45,11 @@ export default function Login(props){ /*props is a way to pass on value to child
                 />
 
                 <button className="link-btn">
-                    <Link to={'register'}> geen account? Account aanmaken</Link>
+                    <Link to={'/register'}> geen account? Account aanmaken</Link>
                 </button>
                 <br/>
                 <button className="link-btn m-5">
-                    <Link to={'wachtwoord_vergeten'}> Wachtwoord vergeten?</Link>
+                    <Link to={'/wachtwoord_vergeten'}> Wachtwoord vergeten?</Link>
                 </button>
 
 

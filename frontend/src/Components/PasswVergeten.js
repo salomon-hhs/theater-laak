@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import {Link} from "react-router-dom";
 
 export default function PasswVergeten(props){
     const[email,setEmail]= useState(''); /*inside the useState is the initial value*/
@@ -9,9 +10,9 @@ export default function PasswVergeten(props){
     }
     return(
 
-        <div className="auth-form">
+        <div className="auth-form text-black">
             <div className="col-1">
-                <h2 className="text-2xl text-left text-white m-5">Inloggen</h2>
+                <h2 className="text-2xl text-left text-white m-5">Wachtwoord vergeten</h2>
 
                 <form className="passwVergeten-form" onSubmit={handleSubmit}>
 
@@ -23,7 +24,7 @@ export default function PasswVergeten(props){
                     <button className="bg-red-900 hover:bg-red-700 py-2 px-8 rounded text-white m-5" type="submit">Verzenden</button>
                 </form>
 
-                <button className="link-btn" onClick={() => props.onFormSwitch('register')}>Geen account? Account aanmaken</button>
+                <Link to={'/registreren'} className="link-btn">Geen account? Account aanmaken</Link>
 
             </div>
         </div>
