@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+.x-responsive {
+    @apply mx-4 sm:w-3/4 sm:mx-auto;
+}
+
 
 
 .auth-form, .login-form, .register-form {
@@ -29,6 +33,7 @@
   }
   
   
+
   .link-btn{
     background: none;
     color: #FFFFFF;
