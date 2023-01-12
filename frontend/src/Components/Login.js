@@ -45,7 +45,7 @@ export default function Login(props){ /*props is a way to pass on value to child
                 />
 
                 <button className="link-btn">
-                    <Link to={'/register'}> geen account? Account aanmaken</Link>
+                    <Link to={'/registreren'}> geen account? Account aanmaken</Link>
                 </button>
                 <br/>
                 <button className="link-btn m-5">
