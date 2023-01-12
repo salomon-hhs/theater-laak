@@ -5,8 +5,8 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import './index.css';
-import Layout from './Components/Layout';
 import Home from './Home';
+import Layout from './Components/Layout';
 import Login from './Components/Login';
 import Register from './Components/Register';
 import PasswVergeten from './Components/PasswVergeten';
@@ -15,19 +15,19 @@ import reportWebVitals from './reportWebVitals';
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Layout><Home/></Layout>
+    element: <Layout><Home /></Layout>
   },
   {
     path: "/inloggen",
-    element: <Login />
+    element: <Layout><Login /></Layout>
   },
   {
     path: "/registreren",
-    element: <Register />
+    element: <Layout><Register /></Layout>
   },
   {
     path: "/wachtwoord_vergeten",
-    element: <PasswVergeten />
+    element: <Layout><PasswVergeten /></Layout>
   }
 ])
 
