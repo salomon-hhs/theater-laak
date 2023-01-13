@@ -8,9 +8,18 @@ export default function Register(props){
     const[passw,setPassw]= useState('');
     const[passw_conf,setPassw_conf]= useState('');  
     
-    const handleSubmit = (e)=>{ /*e stands for event handler*/
-        e.preventDefault(); {/*if you don't don't do this the page is going to get reloaded and then you will lose the state*/}
-        console.log(email);
+    const handleSubmit = async (e) => { /*e stands for event handler*/
+        e.preventDefault();
+        {/*if you don't don't do this the page is going to get reloaded and then you will lose the state*/
+        }
+        await fetch("https://localhost:3001/api/Account/registreer", {
+            "method": "POST",
+            "headers": { 'Content-Type': 'application/json'},
+            "body": JSON.stringify({
+                "Username": vnaam,
+                "password": passw
+            })
+            }).then((r) => alert(r.status));
     }
 
     return(
@@ -34,12 +43,12 @@ export default function Register(props){
              
                     <label htmlFor="password">Wachtwoord</label>
                     <input value={passw} onChange={(e) => setPassw(e.target.value)} type="password"
-                    pattern="/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{7,}$/" 
-                    title="Moet minimaal één cijfer en één hoofdletter en kleine letter bevatten, en minimaal 8 of meer tekens"/>     
+                    // pattern="/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{7,}$/"
+                    title="Moet minimaal één cijfer en één hoofdletter en kleine letter bevatten, en minimaal 8 of meer tekens"/>
 
                     <label htmlFor="passwordConformation">Wachtwoord herhalen</label>
                     <input value={passw_conf} onChange={(e) => setPassw_conf(e.target.value)} type="password"
-                    pattern="/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{7,}$/"
+                    // pattern="/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{7,}$/"
                     />                           
 
                     <button className="bg-white hover:bg-red-600 py-2 px-8 rounded text-black m-5" type="submit">Account Aanmaken</button>
