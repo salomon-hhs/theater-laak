@@ -5,3 +5,41 @@
 .x-responsive {
     @apply mx-4 sm:w-3/4 sm:mx-auto;
 }
+
+
+
+.auth-form, .login-form, .register-form {
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column ;
+    align-items: center;
+    margin: 5px;
+    padding: 10px;
+  }
+  
+  label{
+    color: #FFFFFF;
+    margin: 5px;
+    width: 300px;
+    text-align: left;
+  }
+  
+  input{
+    width: 300px;
+    height: 35px;
+    border: none;
+    border-radius: 5px;
+    margin: 5px;
+  }
+  
+  
+
+  .link-btn{
+    background: none;
+    color: #FFFFFF;
+    text-decoration: underline;
+    border: none;
+  }
+  .link-btn:hover{
+    color:#2978e0;
+  }
