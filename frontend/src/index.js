@@ -8,12 +8,17 @@ import './index.css';
 import Layout from './Components/Layout';
 import Home from './Home';
 import reportWebVitals from './reportWebVitals';
+import { EPComponent } from './EvenementPagina/ContentEV';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout><Home/></Layout>
   },
+  {
+    path: "/Evenementen",
+    element: <Layout><EPComponent/></Layout> 
+ },
 ])
 
 ReactDOM.createRoot(document.getElementById("root")).render(
