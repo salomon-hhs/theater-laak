@@ -6,7 +6,7 @@ export function EPComponent(){
    <div className="flex flex-wrap justify-center content-around" id="flex1">
               <div className=" mx-2 my-6">
                 <img className="Event_img rounded-2xl" src="https://cdn.pixabay.com/photo/2016/11/08/05/15/ramayana-festival-1807516_1280.jpg" alt="Link en een foto van een asian celebration evenement"/>
-                <h3 className="text-left">Celebration of some sort</h3>
+                <h3 className="text-left">Chinese New Years</h3>
                 <div className="text-left"><a className="meerInfoLink" href="/">Meer weten over Celebration of some sort</a></div>
               </div>
               
@@ -30,7 +30,7 @@ export function EPComponent(){
               
               <div className="mx-2 my-6">
                <img className="Event_img rounded-2xl" src="https://cdn.pixabay.com/photo/2016/09/13/07/35/walking-dead-1666584_1280.jpg" alt="Link en een foto van de walking dead evenement"/>
-               <h3 className="text-left">The walking Dead</h3>
+               <h3 className="text-left">Dead Man Walking</h3>
                <div className="text-left"><a className="meerInfoLink" href="/">Meer weten over Celebration of some sort</a></div>
               </div>
 
