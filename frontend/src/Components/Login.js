@@ -4,12 +4,12 @@ import ReCAPTCHA from "react-google-recaptcha";
 
 
 export default function Login(props){ /*props is a way to pass on value to children elements/components */
-    const[email,setEmail]= useState(''); /*inside the useState is the initial value*/
+    const[gbnaam,setGbnaam]= useState(''); /*inside the useState is the initial value*/
     const[passw,setPassw]= useState('');
 
     const handleSubmit = (e)=>{ /*e stands for event handler*/
         e.preventDefault(); {/*if you don't don't do this the page is going to get reloaded and then you will lose the state*/}
-        console.log(email);
+        console.log(gbnaam);
     }
 
     function onChange(value) {
@@ -24,9 +24,9 @@ export default function Login(props){ /*props is a way to pass on value to child
 
                 <form className="login-form text-black" onSubmit={handleSubmit}>
 
-                    <label htmlFor="email">Email</label>
-                    <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" 
-                     pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"                    
+                    <label htmlFor="gbnaam">Gebruikersnaam</label>
+                    <input value={gbnaam} onChange={(e) => setGbnaam(e.target.value)} type="text" 
+                     /*pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" */                   
                     />
              
 
