@@ -32,7 +32,17 @@
     margin: 5px;
   }
   
-  
+  h2{
+    color:white;
+    font-size: 40px;
+    font-weight:700;
+}
+
+h3{
+    color:white;
+    font-size: 25px;
+    font-weight:400;
+}
 
   .link-btn{
     background: none;
@@ -66,12 +76,13 @@ p{
 #HomeImg_Id{
     height:450px;
     width: 1500px;
+    margin-bottom: 50px;
 }
 
 
 .Event_img{
-    width: 300px;
-    height: 370px;
+    width: 275px;
+    height: 350px;
 }
 
 
@@ -85,6 +96,37 @@ p{
 
 }
 
+.container {
+  position: relative;
+  width: 50%;
+}
+
+.Event_imgh{
+  opacity: 1;
+  width: 275px;
+  height: 350px;
+  transition: .5s ease;
+  backface-visibility: hidden;
+}
+
+.middle {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 70%;
+  text-align: left;
+}
+
+.container:hover .Event_imgh {
+  opacity: 0.5;
+}
+
+.container:hover .middle {
+  opacity: 0.9;
+}
+.text{
+  margin-left: 10px;
+}
 
 
 #flex1{position: relative;
