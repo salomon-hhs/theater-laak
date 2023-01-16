@@ -1,5 +1,5 @@
-import { EvenementenHP } from "./EvenementHP"
-import { ZaalHurenHP } from "./ZaalHuren"
+import { EvenementenHP } from "./EvenementSection"
+import { ZaalHurenHP } from "./ZaalSection"
 export function HomePagina(){
     return <>
     <body>

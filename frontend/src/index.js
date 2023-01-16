@@ -11,6 +11,7 @@ import Login from './Components/Login';
 import Register from './Components/Register';
 import PasswVergeten from './Components/PasswVergeten';
 import reportWebVitals from './reportWebVitals';
+import { EvenementenPagina } from './EvenementPagina/ContentEV';
 
 const router = createBrowserRouter([
   {
@@ -31,7 +32,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/Evenementen",
-    element: <Layout><EPComponent/></Layout> 
+    element: <Layout><EvenementenPagina/></Layout> 
  }
 ])
 
