@@ -8,5 +8,5 @@ public class Deelnemer : IdentityUser
     public DateOnly GeboorteDatum { get; set; }
     public string Logo { get; set; }
     
-    public ICollection<DeelnemerMetBand> DeelnemersMetBands { get; set; }
+    public ICollection<DeelnemerMetBand>? DeelnemersMetBands { get; set; }
 }
