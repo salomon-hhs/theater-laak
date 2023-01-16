@@ -1,6 +1,6 @@
 import { EvenementenHP } from "./EvenementHP"
 import { ZaalHurenHP } from "./ZaalHuren"
-export function ContentHP(){
+export function HomePagina(){
     return <>
     <body>
     <EvenementenHP/>

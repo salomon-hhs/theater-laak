@@ -15,7 +15,7 @@ import reportWebVitals from './reportWebVitals';
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Layout><Home /></Layout>
+    element: <Layout><Home/></Layout>
   },
   {
     path: "/inloggen",
@@ -28,7 +28,11 @@ const router = createBrowserRouter([
   {
     path: "/wachtwoord_vergeten",
     element: <Layout><PasswVergeten /></Layout>
-  }
+  },
+  {
+    path: "/Evenementen",
+    element: <Layout><EPComponent/></Layout> 
+ }
 ])
 
 ReactDOM.createRoot(document.getElementById("root")).render(

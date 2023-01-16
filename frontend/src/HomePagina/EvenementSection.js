@@ -11,11 +11,11 @@ export function EvenementenHP() {
               </div>
               
               <div className=" mx-2 rounded-md">
-                <a href="" id="The_"><img className="Event_img rounded-2xl" src="https://cdn.pixabay.com/photo/2016/09/13/07/35/walking-dead-1666584_1280.jpg" alt="Link en een foto van de walking dead evenement" height='300px'/></a>
+                <a href="/Evenementen" id="The_Walkkng_Dead"><img className="Event_img rounded-2xl" src="https://cdn.pixabay.com/photo/2016/09/13/07/35/walking-dead-1666584_1280.jpg" alt="Link en een foto van de walking dead evenement" height='300px'/></a>
                 </div>
 
               <div className=" mx-2">
-                <a href="google.com" id=""><img className="Event_img rounded-2xl" src="https://cdn.pixabay.com/photo/2014/08/29/05/00/dance-430554_1280.jpg" alt="" /></a>
+                <a href="/Evenementen" id=""><img className="Event_img rounded-2xl" src="https://cdn.pixabay.com/photo/2014/08/29/05/00/dance-430554_1280.jpg" alt="" /></a>
               </div>
     </div>
     <div className="text-center mb-20 mt-10"><a className="Event_img bg-brightest hover:bg-rose-900 rounded-md px-4 py-4" href="/Evenementen">Bekijk alle evenementen</a></div>
