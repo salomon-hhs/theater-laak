@@ -103,8 +103,8 @@ p{
 
 .Event_imgh{
   opacity: 1;
-  width: 275px;
-  height: 350px;
+  width: 280px;
+  height: 325px;
   transition: .5s ease;
   backface-visibility: hidden;
 }
