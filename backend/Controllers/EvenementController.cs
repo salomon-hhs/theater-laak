@@ -7,6 +7,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using backend.Data;
 
+public class MockEvent
+{
+    public DateTime d;
+    public int z;
+}
+
 namespace backend.Controllers
 {
     [Route("api/[controller]")]
@@ -82,13 +88,16 @@ namespace backend.Controllers
 
         // POST: api/Evenement
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+
         [HttpPost]
-        public async Task<ActionResult<Evenement>> PostEvenement(Evenement evenement)
+        public async Task<ActionResult<Evenement>> PostEvenement(MockEvent e)
         {
-          if (_context.Evenementen == null)
-          {
-              return Problem("Entity set 'DatabaseContext.Evenementen'  is null.");
-          }
+            if (_context.Evenementen == null)
+            {
+                return Problem("Entity set 'DatabaseContext.Evenementen'  is null.");
+            }
+
+            Evenement evenement = new Evenement() { Datum = e.d, Zaal = _context.Zalen.Find(e.z) };
             _context.Evenementen.Add(evenement);
             await _context.SaveChangesAsync();
 
@@ -96,6 +105,7 @@ namespace backend.Controllers
         }
 
         // DELETE: api/Evenement/5
+
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteEvenement(int id)
         {

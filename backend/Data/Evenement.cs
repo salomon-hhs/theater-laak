@@ -7,6 +7,6 @@ public class Evenement
     
     public Zaal Zaal { get; set; }
         
-    public ICollection<Opvoering> Opvoeringen { get; set; }
-    public ICollection<Ticket> Tickets { get; set; }
+    public ICollection<Opvoering>? Opvoeringen { get; set; }
+    public ICollection<Ticket>? Tickets { get; set; }
 }
