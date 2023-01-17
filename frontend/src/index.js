@@ -10,6 +10,7 @@ import Layout from './Components/Layout';
 import Login from './Components/Login';
 import Register from './Components/Register';
 import PasswVergeten from './Components/PasswVergeten';
+import OverOns from './Components/OverOns';
 import reportWebVitals from './reportWebVitals';
 import { EvenementenPagina } from './EvenementPagina/ContentEV';
 import { HomePagina } from './HomePagina/ContentHP';
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
   {
     path: "/wachtwoord_vergeten",
     element: <Layout><PasswVergeten /></Layout>
+  },
+  {
+    path: "/over-ons",
+    element: <Layout><OverOns /></Layout>
   },
   {
     path: "/Evenementen",
