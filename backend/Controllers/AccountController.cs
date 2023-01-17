@@ -66,7 +66,10 @@ public class AccountController : ControllerBase
                     expires: DateTime.Now.AddMinutes(10),
                     signingCredentials: signingCredentials
                 );
-                return Ok(new { Token = new JwtSecurityTokenHandler().WriteToken(tokenOptions) });
+                var t = new { Token = new JwtSecurityTokenHandler().WriteToken(tokenOptions) };
+                var name = _user.UserName;
+                var response = new { t, name };
+                return Ok(response);
             }
 
         return Unauthorized();
