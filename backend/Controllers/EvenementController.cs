@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
@@ -9,8 +10,17 @@ using backend.Data;
 
 public class MockEvent
 {
-    public DateTime d;
-    public int z;
+    [Required(ErrorMessage = "date is required")]
+    public DateTime datum { get; set; }
+    
+    [Required(ErrorMessage = "zaal id is required")]
+    public int zaal { get; set; }
+    
+    [Required(ErrorMessage = "titel is required")]
+    public string titel { get; set; }
+    
+    [Required(ErrorMessage = "beschrijving is required")]
+    public string beschrijving { get; set; }
 }
 
 namespace backend.Controllers
@@ -46,7 +56,7 @@ namespace backend.Controllers
               return NotFound();
           }
             var evenement = await _context.Evenementen.FindAsync(id);
-
+            
             if (evenement == null)
             {
                 return NotFound();
@@ -90,14 +100,15 @@ namespace backend.Controllers
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
 
         [HttpPost]
-        public async Task<ActionResult<Evenement>> PostEvenement(MockEvent e)
+        public async Task<ActionResult<Evenement>> PostEvenement([FromBody] MockEvent e)
         {
+            Console.WriteLine(e.zaal);
             if (_context.Evenementen == null)
             {
                 return Problem("Entity set 'DatabaseContext.Evenementen'  is null.");
             }
 
-            Evenement evenement = new Evenement() { Datum = e.d, Zaal = _context.Zalen.Find(e.z) };
+            Evenement evenement = new Evenement() { Datum = e.datum, titel = e.titel, beschrijving = e.beschrijving, Zaal = _context.Zalen.Find(e.zaal) };
             _context.Evenementen.Add(evenement);
             await _context.SaveChangesAsync();
 

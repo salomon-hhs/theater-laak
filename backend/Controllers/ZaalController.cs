@@ -88,7 +88,6 @@ namespace backend.Controllers
         [HttpPost]
         public async Task<ActionResult<Zaal>> PostZaal([FromQuery] int rang1, [FromQuery] int? rang2, [FromQuery] int? rang3)
         {
-            Console.WriteLine(rang1);
             List<int> c = new List<int>();
 
             c.Add(rang1);
