@@ -81,8 +81,8 @@ p{
 
 
 .Event_img{
-    width: 275px;
-    height: 350px;
+    width: 280px;
+    height: 325px;
 }
 
 
@@ -124,10 +124,10 @@ p{
 .container:hover .middle {
   opacity: 0.9;
 }
+
 .text{
   margin-left: 10px;
 }
-
 
 #flex1{position: relative;
     text-align: center;
