@@ -29,4 +29,8 @@
       <Folder Include="Steps" />
     </ItemGroup>
 
+    <ItemGroup>
+        <ProjectReference Include="..\backend\backend.csproj" />
+    </ItemGroup>
+
 </Project>
