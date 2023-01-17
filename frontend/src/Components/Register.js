@@ -54,7 +54,6 @@ export default function Register(props){
                     <PasswordChecklist className="text-white "
                         rules={["minLength", "specialChar", "number", "capital","lowercase","notEmpty", "match"]}
                         minLength={7}
-                        //invalidColor={"white"}
                         iconComponents = {{ValidIcon: <img src={validFoto} alt="voldaan" />, InvalidIcon: <img src={invalidFoto} alt="niet voldaan" />}}
                         value={passw}
                         valueAgain={passw_conf}
