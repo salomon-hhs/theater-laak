@@ -244,7 +244,7 @@ fabric.properties
 .idea/caches/build_file_checksums.ser
 
 ### VisualStudioCode ###
-.vscode
+.vscode/*
 
 # Local History for Visual Studio Code
 .history/
