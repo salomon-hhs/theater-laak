@@ -601,10 +601,6 @@ video {
   margin: 1.25rem;
 }
 
-.m-10 {
-  margin: 2.5rem;
-}
-
 .mx-2 {
   margin-left: 0.5rem;
   margin-right: 0.5rem;
@@ -635,11 +631,6 @@ video {
   margin-bottom: 1.25rem;
 }
 
-.mx-5 {
-  margin-left: 1.25rem;
-  margin-right: 1.25rem;
-}
-
 .mb-2 {
   margin-bottom: 0.5rem;
 }
@@ -668,44 +659,16 @@ video {
   margin-top: 1.25rem;
 }
 
-.ml-10 {
-  margin-left: 2.5rem;
-}
-
 .mb-24 {
   margin-bottom: 6rem;
-}
-
-.block {
-  display: block;
 }
 
 .flex {
   display: flex;
 }
 
-.h-0 {
-  height: 0px;
-}
-
-.h-20 {
-  height: 5rem;
-}
-
-.h-32 {
-  height: 8rem;
-}
-
 .h-56 {
   height: 14rem;
-}
-
-.max-h-16 {
-  max-height: 4rem;
-}
-
-.max-h-10 {
-  max-height: 2.5rem;
 }
 
 .min-h-screen {
@@ -1097,6 +1060,17 @@ p{
   color:black
 }
 
+input[type=radio] {
+  border: 1px solid #fff;
+  padding: 0.5em;
+  -webkit-appearance: none;
+}
+
+input[type=radio]:checked {
+  background: url(https://www.flaticon.com/free-icon/close_1828778) no-repeat center center;
+  background-size: 9px 9px;
+}
+
 .hover\:bg-white:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
@@ -1183,3 +1157,6 @@ p{
     line-height: 2rem;
   }
 }
+
+
+
