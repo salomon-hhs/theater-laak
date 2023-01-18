@@ -102,13 +102,16 @@ namespace backend.Controllers
         [HttpPost]
         public async Task<ActionResult<Evenement>> PostEvenement([FromBody] MockEvent e)
         {
-            Console.WriteLine(e.zaal);
             if (_context.Evenementen == null)
             {
                 return Problem("Entity set 'DatabaseContext.Evenementen'  is null.");
             }
 
-            Evenement evenement = new Evenement() { Datum = e.datum, titel = e.titel, beschrijving = e.beschrijving, Zaal = _context.Zalen.Find(e.zaal) };
+            Evenement evenement = new Evenement()
+                { Datum = e.datum, titel = e.titel, beschrijving = e.beschrijving, Zaal = _context.Zalen.Find(e.zaal) };
+            
+            if (_context.Evenementen.Contains(evenement)) return Forbid();
+            
             _context.Evenementen.Add(evenement);
             await _context.SaveChangesAsync();
 
