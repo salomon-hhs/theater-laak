@@ -13,6 +13,7 @@ import PasswVergeten from './Components/PasswVergeten';
 import reportWebVitals from './reportWebVitals';
 import { EvenementenPagina } from './EvenementPagina/ContentEV';
 import { HomePagina } from './HomePagina/ContentHP';
+import { TicketPagina } from './TicketPagina/TicketComponent';
 
 const router = createBrowserRouter([
   {
@@ -34,7 +35,11 @@ const router = createBrowserRouter([
   {
     path: "/Evenementen",
     element: <Layout><EvenementenPagina/></Layout> 
- }
+ }, 
+ {
+  path: "/Ticket",
+ element: <Layout><TicketPagina/></Layout> 
+}
 ])
 
 ReactDOM.createRoot(document.getElementById("root")).render(
