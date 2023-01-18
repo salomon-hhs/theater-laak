@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using backend.Data;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
@@ -6,9 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddDbContext<DatabaseContext>(options =>
-        options.UseSqlite("data source=laak.db")
-    );
+builder.Services.AddDbContext<DatabaseContext>();
 
 // Add services to the container.
 
@@ -39,6 +38,9 @@ builder.Services.AddAuthentication(opt =>
         IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("awef98awef978haweof8g7aw789efhh789awef8h9awh89efh89awe98f89uawef9j8aw89hefawef"))
     };
 });
+
+builder.Services.AddControllers().AddJsonOptions(x =>
+    x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 
 var app = builder.Build();
 

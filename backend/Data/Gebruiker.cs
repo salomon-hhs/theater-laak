@@ -10,6 +10,6 @@ public class Gebruiker : IdentityUser
 
     public bool IsBegunstiger()
     {
-        throw new NotImplementedException();
+        return AantalGedoneerd > 1000;
     }
 }

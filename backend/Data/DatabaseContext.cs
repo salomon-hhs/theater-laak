@@ -56,12 +56,18 @@ public class DatabaseContext : IdentityDbContext
         //evenement *--1 zaal relation
         modelBuilder.Entity<Zaal>()
             .HasMany(z => z.Evenementen)
-            .WithOne(e => e.Zaal);
+            .WithOne(e => e.Zaal)
+            .HasForeignKey(e => e.ZaalId);
         
         //zaal 1--* rang relation
         modelBuilder.Entity<Zaal>()
             .HasMany(z => z.Rangen)
             .WithOne(r => r.Zaal);
+    }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder.UseSqlite("data source=laak.db");
     }
 
     public DbSet<Gebruiker> Gebruikers { get; set; }

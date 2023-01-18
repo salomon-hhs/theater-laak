@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using backend.Data;
 
@@ -10,9 +11,11 @@ using backend.Data;
 namespace backend.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20230116104456_nullable_rang_collection")]
+    partial class nullablerangcollection
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.1");
@@ -262,14 +265,6 @@ namespace backend.Migrations
 
                     b.Property<int>("ZaalId")
                         .HasColumnType("INTEGER");
-
-                    b.Property<string>("beschrijving")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("titel")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
