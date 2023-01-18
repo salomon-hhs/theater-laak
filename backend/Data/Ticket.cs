@@ -2,7 +2,7 @@ namespace backend.Data;
 
 public class Ticket
 {
-    public string Id { get; set; }
+    public int Id { get; set; }
     
     public string GebruikerId { get; set; }
     public Gebruiker Gebruiker { get; set; }
