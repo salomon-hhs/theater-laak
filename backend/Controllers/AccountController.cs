@@ -68,7 +68,8 @@ public class AccountController : ControllerBase
                 );
                 var t = new { Token = new JwtSecurityTokenHandler().WriteToken(tokenOptions) };
                 var name = _user.UserName;
-                var response = new { t, name };
+                var id = _user.Id;
+                var response = new { t, name, id };
                 return Ok(response);
             }
 
