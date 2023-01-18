@@ -40,7 +40,7 @@ export default function Register(props){
 
                     <label htmlFor="email">Email</label>
                     <input value={email} onChange={(e) => setEmail(e.target.value)} type="email"
-                     pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"                    
+                     // pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"                    
                     />
              
                     <label htmlFor="password">Wachtwoord</label>
