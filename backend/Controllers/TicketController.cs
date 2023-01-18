@@ -21,6 +21,15 @@ public class TicketInfo
     public int rank { get; set; }
 }
 
+public class UserEvent
+{
+    [Required(ErrorMessage = "EventId is required")]
+    public int EventId { get; set; }
+    
+    [Required(ErrorMessage = "UserId is required")]
+    public string UserId { get; set; }
+}
+
 namespace backend.Controllers
 {
 
@@ -34,6 +43,8 @@ namespace backend.Controllers
         {
             _context = databaseContext;
         }
+        
+        
 
         [HttpPost("addTicket")]
         public async Task<ActionResult> PostEvenement([FromBody] TicketInfo t)
@@ -70,6 +81,23 @@ namespace backend.Controllers
             await _context.SaveChangesAsync();
             
             return CreatedAtAction("GetTicket", new { id = ticket.Id }, ticket);
+        }
+        
+        [HttpGet]
+        public async Task<ActionResult<ICollection<Ticket>>> GetTickets(UserEvent e)
+        {
+            if (_context.Tickets == null || !_context.Tickets.Any())
+            {
+                return NotFound();
+            }
+
+            var result = _context.Tickets.Where(o => o.GebruikerId == e.UserId && o.EvenementId == e.EventId).ToList();
+            if (!result.Any())
+            {
+                return NotFound();
+            }
+
+            return result;
         }
 
         [HttpGet("{id}")]
