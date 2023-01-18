@@ -64,11 +64,6 @@ public class DatabaseContext : IdentityDbContext
             .WithOne(r => r.Zaal);
     }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        optionsBuilder.UseSqlite("data source=laak.db");
-    }
-
     public DbSet<Gebruiker> Gebruikers { get; set; }
     public DbSet<Deelnemer> Deelnemers { get; set; }
     public DbSet<Band> Bands { get; set; }
