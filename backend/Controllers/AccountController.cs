@@ -1,7 +1,11 @@
 using System.ComponentModel.DataAnnotations;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 using backend.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 
 public class GebruikerMetWachwoord : Gebruiker
 {
@@ -44,14 +48,30 @@ public class AccountController : ControllerBase
     public async Task<IActionResult> Login([FromBody] GebruikerLogin gebruikerLogin)
     {
         var _user = await _userManager.FindByNameAsync(gebruikerLogin.UserName);
-
         if (_user != null)
-        {
-            await _signInManager.SignInAsync(_user, true);
-            return Ok();
-        }
+            if (await _userManager.CheckPasswordAsync(_user, gebruikerLogin.Password))
+            {
+                var secret = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("awef98awef978haweof8g7aw789efhh789awef8h9awh89efh89awe98f89uawef9j8aw89hefawef"));
+
+                var signingCredentials = new SigningCredentials(secret, SecurityAlgorithms.HmacSha256);
+                var claims = new List<Claim> { new Claim(ClaimTypes.Name, _user.UserName) };
+                var roles = await _userManager.GetRolesAsync(_user);
+                foreach (var role in roles)
+                    claims.Add(new Claim(ClaimTypes.Role, role));
+                var tokenOptions = new JwtSecurityToken
+                (
+                    issuer: "https://localhost:3001",
+                    audience: "https://localhost:3001",
+                    claims: claims,
+                    expires: DateTime.Now.AddMinutes(10),
+                    signingCredentials: signingCredentials
+                );
+                var t = new { Token = new JwtSecurityTokenHandler().WriteToken(tokenOptions) };
+                var name = _user.UserName;
+                var response = new { t, name };
+                return Ok(response);
+            }
 
         return Unauthorized();
     }
-
 }

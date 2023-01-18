@@ -1,6 +1,5 @@
 import React, {useState} from "react";
-import {Link} from 'react-router-dom';
-import PasswordChecklist from "react-password-checklist"
+import {Link, redirect} from 'react-router-dom';
 import ReCAPTCHA from "react-google-recaptcha";
 
 
@@ -17,7 +16,13 @@ export default function Login(props){ /*props is a way to pass on value to child
                 "Username": gbnaam,
                 "password": passw
             })
-        }).then(alert('hi'))
+        }).then(async (r) => {
+            if (r.status === 200) {
+                let name = await r.json().then(u => u.name);
+                sessionStorage.setItem('user', name);
+                window.location.assign("/");
+            }
+        })
     }
 
     function onChange(value) {
