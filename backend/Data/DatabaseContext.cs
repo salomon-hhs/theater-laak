@@ -56,7 +56,8 @@ public class DatabaseContext : IdentityDbContext
         //evenement *--1 zaal relation
         modelBuilder.Entity<Zaal>()
             .HasMany(z => z.Evenementen)
-            .WithOne(e => e.Zaal);
+            .WithOne(e => e.Zaal)
+            .HasForeignKey(e => e.ZaalId);
         
         //zaal 1--* rang relation
         modelBuilder.Entity<Zaal>()
