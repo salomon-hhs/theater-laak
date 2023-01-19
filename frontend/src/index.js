@@ -41,7 +41,7 @@ const router = createBrowserRouter([
     element: <Layout><EvenementenPagina/></Layout> 
  }, 
  {
-  path: "/Ticket",
+  path: "/Ticket/:id",
  element: <Layout><TicketPagina/></Layout> 
 }
 ])
