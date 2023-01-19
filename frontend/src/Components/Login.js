@@ -3,7 +3,7 @@ import {Link, redirect} from 'react-router-dom';
 import ReCAPTCHA from "react-google-recaptcha";
 
 
-export default function Login(props){ /*props is a way to pass on value to children elements/components */
+export default function Login(){ 
     const[gbnaam,setGbnaam]= useState(''); /*inside the useState is the initial value*/
     const[passw,setPassw]= useState('');
 

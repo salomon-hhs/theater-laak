@@ -6,15 +6,14 @@ import validFoto from '../assets/valid.png';
 
 
 
-export default function Register(props){
+export default function Register(){
     const[vnaam,setVnaam]= useState(''); 
     const[email,setEmail]= useState(''); /*inside the useState is the initial value*/
     const[passw,setPassw]= useState('');
     const[passw_conf,setPassw_conf]= useState('');  
     
     const handleSubmit = async (e)=>{ /*e stands for event handler*/
-        e.preventDefault(); {/*if you don't don't do this the page is going to get reloaded and then you will lose the state*/}
-        //console.log(email);
+        e.preventDefault(); //if you don't don't do this the page is going to get reloaded and then you will lose the state
         await fetch("https://localhost:3001/api/Account/registreer", {
             "method": "POST",
             "headers": { 'Content-Type': 'application/json'},
