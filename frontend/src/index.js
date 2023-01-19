@@ -12,7 +12,7 @@ import Register from './Components/Register';
 import PasswVergeten from './Components/PasswVergeten';
 import OverOns from './Components/OverOns';
 import reportWebVitals from './reportWebVitals';
-import { EvenementenPagina } from './EvenementPagina/ContentEV';
+import { EvenementenPagina, TicketPagina } from './EvenementPagina/ContentEV';
 import { HomePagina } from './HomePagina/ContentHP';
 
 const router = createBrowserRouter([
@@ -39,7 +39,11 @@ const router = createBrowserRouter([
   {
     path: "/Evenementen",
     element: <Layout><EvenementenPagina/></Layout> 
- }
+ }, 
+ {
+  path: "/Ticket/:id",
+ element: <Layout><TicketPagina/></Layout> 
+}
 ])
 
 ReactDOM.createRoot(document.getElementById("root")).render(
