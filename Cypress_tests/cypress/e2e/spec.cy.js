@@ -44,6 +44,25 @@ describe('Evenement Toevoegen', () => {
   });
 });
 
+describe('Print tickets', () => {
+  it('it allows admin to print ticket', () => {
+    cy.visit('http://localhost:3000/admin');
+    cy.get('#toPrintPage').click();
+    cy.url().should('include', '/print-ticket');
+
+    cy.get('#searchbtn').click();
+  });
+});
+
+/*describe('Header links', () => {
+  it('allows a user to navigate to different pages', () => {
+    cy.visit('http://localhost:3000/');
+    cy.get('[url="/inloggen"]').click();
+    //cy.get('.NavButton').contains('Inloggen').click();
+    
+    cy.url().should('include', '/inloggen');
+  });
+});*/
 
 describe('Footer links', () => {
   it('renders the correct links', () => {

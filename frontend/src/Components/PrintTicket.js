@@ -24,17 +24,17 @@ export default function PrintTicket(){
             <h2 className="text-2xl text-left text-white m-5">Print Ticket</h2>
 
             <form>
-                <input  
+                <input  id='searchbar'
                     type='text'
                     value={ticketId}
                     placeholder={'Search ticket id'}
                     onChange={(e) => setTicketId(e.target.value)}
                 />
 
-                <button className="bg-white hover:bg-blue-700 py-2 px-8 rounded text-black m-5" onClick={() => onSearch(ticketId)} onSubmit={handleSubmit}>Search</button>
+                <button className="bg-white hover:bg-blue-700 py-2 px-8 rounded text-black m-5" id='searchbtn' onClick={() => onSearch(ticketId)} onSubmit={handleSubmit}>Search</button>
                 <div className='flex-col '>
 
-                <button className="bg-red-900 hover:bg-red-700 py-2 px-8 rounded text-white m-5 items-center" type="submit">Print</button>
+                <button className="bg-red-900 hover:bg-red-700 py-2 px-8 rounded text-white m-5 items-center" type="submit" id='printbtn'>Print</button>
 
                 </div>
             </form>
