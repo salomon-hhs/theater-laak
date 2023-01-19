@@ -41,6 +41,11 @@ export function TicketPagina(props){
     let {id} = useParams();
 
     const [Evenement, setEvenement] = useState();
+    const [date, setDate] = useState("")
+
+    const [rang1, setRang1] = useState(false);
+    const [rang2, setRang2] = useState(false);
+    const [rang3, setRang3] = useState(false);
 
     function fetchEvent() {
         fetch('https://theater-laak-api.azurewebsites.net/api/Evenement/' + id)
@@ -49,7 +54,16 @@ export function TicketPagina(props){
                 console.log(Evenement)
             })
     }
-    const [date, setDate] = useState("")
+
+    function checkAvailable() {
+        fetch("https://localhost:3001/api/Evenement/" + id + "/a")
+            .then(r => r.json())
+            .then(o => {
+                setRang1(o[0] ? o[0] : false)
+                setRang2(o[1] ? o[1] : false)
+                setRang3(o[2] ? o[2] : false)
+            })
+    }
 
     function parseDate(d) {
         return (d.split('T')[0] + " " + d.split('T')[1])
@@ -58,6 +72,7 @@ export function TicketPagina(props){
     useEffect(() => {
         fetchEvent()
         setDate(Evenement ? parseDate(Evenement.datum) : "")
+        checkAvailable()
     }, [])
 
    const[totaal, PlusMinTotaal]= useState(0);
@@ -110,9 +125,17 @@ export function TicketPagina(props){
             <h4 className="">Kies uw voorkeurszitplaats:</h4>
             <form>
             <div className="flex">
-            {print()}
-            <input type="radio" id="gehandicapt_rang" name="voorkeur_rang" value="Gehandicapt_Rang"/>
-            <label htmlFor="gehandicapt_rang"><img className="h-6 w-6" src="https://cdn-icons-png.flaticon.com/512/657/657563.png"/></label>
+                <input disabled={!rang1} hidden={!rang1} type="radio" id="rang1" name="voorkeur_rang" value="Rang1"/>
+                <label hidden={!rang1} htmlFor="rang1">1</label>
+
+                <input disabled={!rang2} hidden={!rang2} type="radio" id="rang2" name="voorkeur_rang" value="Rang2"/>
+                <label hidden={!rang2} htmlFor="rang2">2</label>
+
+                <input disabled={!rang3} hidden={!rang3} type="radio" id="rang3" name="voorkeur_rang" value="Rang3"/>
+                <label hidden={!rang3} htmlFor="rang3">3</label>
+
+                <input type="radio" id="gehandicapt_rang" name="voorkeur_rang" value="Gehandicapt_Rang"/>
+                <label htmlFor="gehandicapt_rang"><img className="h-6 w-6" src="https://cdn-icons-png.flaticon.com/512/657/657563.png"/></label>
             </div>
 
             <button className="bg-red-900 hover:bg-red-700 py-2 px-3 rounded text-white my-3 flex justify-center" type="submit">Preferentie toepassen</button>
@@ -161,13 +184,5 @@ return <>
 
 function DrieRankZalen(){
   return<>
-  <input type="radio" id="rang1" name="voorkeur_rang" value="Rang1"/>
-          <label htmlFor="rang1">1</label>
-  
-          <input type="radio" id="rang2" name="voorkeur_rang" value="Rang2"/>
-          <label htmlFor="rang2">2</label>
-  
-          <input type="radio" id="rang3" name="voorkeur_rang" value="Rang3"/>
-          <label htmlFor="rang3">3</label>
           </>
 }
