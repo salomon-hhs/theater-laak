@@ -1,13 +1,14 @@
 import React, {useState} from "react";
 import {Link, redirect} from 'react-router-dom';
 import ReCAPTCHA from "react-google-recaptcha";
+import AdminMenu from "./AdminMenu";
 
 
 export default function Login(){ 
     const[gbnaam,setGbnaam]= useState(''); /*inside the useState is the initial value*/
     const[passw,setPassw]= useState('');
 
-    const handleSubmit = async (e) => { /*e stands for event handler*/
+    const handleSubmit = async (e) => { 
         e.preventDefault();
         await fetch("https://localhost:3001/api/Account/login", {
             "method": "POST",
@@ -38,11 +39,11 @@ export default function Login(){
                 <form className="login-form text-black" onSubmit={handleSubmit}>
 
                     <label htmlFor="gbnaam">Gebruikersnaam</label>
-                    <input value={gbnaam} onChange={(e) => setGbnaam(e.target.value)} type="text"/>
+                    <input value={gbnaam} onChange={(e) => setGbnaam(e.target.value)} type="text" id="gbnaam"/>
              
 
                     <label htmlFor="password">Wachtwoord</label>
-                    <input value={passw} onChange={(e) => setPassw(e.target.value)} type="password"/>
+                    <input value={passw} onChange={(e) => setPassw(e.target.value)} type="password" id="password"/>
                     
                     <button className="bg-red-900 hover:bg-red-700 py-2 px-8 rounded text-white m-5" type="submit">Inloggen</button>
                 </form>
@@ -62,6 +63,7 @@ export default function Login(){
 
 
             </div>
+            <AdminMenu></AdminMenu>
         </div>
         
     );

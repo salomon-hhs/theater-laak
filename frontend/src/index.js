@@ -14,6 +14,9 @@ import OverOns from './Components/OverOns';
 import reportWebVitals from './reportWebVitals';
 import { EvenementenPagina } from './EvenementPagina/ContentEV';
 import { HomePagina } from './HomePagina/ContentHP';
+import EvenementenToevoegen from './Components/EvenementenToevoegen';
+import PrintTicket from './Components/PrintTicket';
+
 
 const router = createBrowserRouter([
   {
@@ -37,9 +40,13 @@ const router = createBrowserRouter([
     element: <Layout><OverOns /></Layout>
   },
   {
-    path: "/Evenementen",
-    element: <Layout><EvenementenPagina/></Layout> 
- }
+    path: "/print-ticket",
+    element: <Layout><PrintTicket/></Layout> 
+ },
+ {
+  path: "/evenementen-toevoegen",
+  element: <Layout><EvenementenToevoegen/></Layout> 
+}
 ])
 
 ReactDOM.createRoot(document.getElementById("root")).render(

@@ -35,19 +35,20 @@ export default function Register(){
                 <form className="register-form text-black" onSubmit={handleSubmit}>
 
                     <label htmlFor="voornaam">Naam</label>
-                    <input value={vnaam} onChange={(e) => setVnaam(e.target.value)} name="voornaam" id="vnaam" />
+                    <input value={vnaam} onChange={(e) => setVnaam(e.target.value)} name="voornaam" id="vnaam" 
+                    />
 
                     <label htmlFor="email">Email</label>
-                    <input value={email} onChange={(e) => setEmail(e.target.value)} type="email"
+                    <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" id="email"
                      pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"                    
                     />
              
                     <label htmlFor="password">Wachtwoord</label>
-                    <input value={passw} onChange={(e) => setPassw(e.target.value)} type="password"
+                    <input value={passw} onChange={(e) => setPassw(e.target.value)} type="password" id="password"
                     />     
 
                     <label htmlFor="passwordConformation">Wachtwoord herhalen</label>
-                    <input value={passw_conf} onChange={(e) => setPassw_conf(e.target.value)} type="password"
+                    <input value={passw_conf} onChange={(e) => setPassw_conf(e.target.value)} type="password" id="passwordConformation"
                     />  
 
                     <PasswordChecklist className="text-white "
