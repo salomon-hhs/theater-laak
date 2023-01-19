@@ -21,7 +21,7 @@ export function EvenementenPagina(){
 
   return (
       <>
-          <h2 className="ml-7 mb-2 text-4xl">Alle evenementen</h2>
+          <h2 className="ml-7 mb-2 text-4xl">{Evenementen ? "Alle" : "Geen"} evenementen</h2>
           <div className="flex flex-wrap justify-center content-around" id="flex1">
               {Evenementen ? Evenementen.map((Evenement) => (
                   <div className=" mx-2 my-6" key={Evenement.id}>
@@ -46,12 +46,18 @@ export function TicketPagina(props){
         fetch('https://localhost:3001/api/Evenement/' + id)
             .then(r => r.json())
             .then(o => { setEvenement(o)
-            console.log(Evenement)
+                console.log(Evenement)
             })
+    }
+    const [date, setDate] = useState("")
+
+    function parseDate(d) {
+        return (d.split('T')[0] + " " + d.split('T')[1])
     }
 
     useEffect(() => {
         fetchEvent()
+        setDate(Evenement ? parseDate(Evenement.datum) : "")
     }, [])
 
    const[totaal, PlusMinTotaal]= useState(0);
@@ -125,7 +131,7 @@ export function TicketPagina(props){
             </div>
 
             <span className="flex flex-row space-x-28 bg-dark max-w-xl text-center p-2 px-3 rounded-md">
-                <div><p className="text-center" id="Datum">{Evenement ? Evenement.Datum: null}</p></div>
+                <div><p className="text-center" id="Datum">{Evenement ? date : null}</p></div>
 
                 <div><p id="Prijs">{prijs}</p></div>
 
