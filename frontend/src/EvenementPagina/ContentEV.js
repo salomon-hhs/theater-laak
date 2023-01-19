@@ -45,11 +45,24 @@ export function EvenementenPagina(){
   
 }
 
-export function TicketPagina(){
-     //this should be a fetch one day
+export function TicketPagina(props){
+  //this should be a fetch one day
+
    const[totaal, PlusMinTotaal]= useState(0);
    const[aantal, PlusMinAantal]= useState(0);
-    let prijs = 12.50;
+   let prijs = 12.50;
+   let aantalRang = 3;
+
+function print(){
+   if(aantalRang === 2){
+    return <TweeRankZalen/>
+      }
+      else{
+        return <DrieRankZalen/>
+      }
+    }
+
+    
 
     function Plus(){
         if(aantal >= 5){
@@ -81,24 +94,11 @@ export function TicketPagina(){
     <div className="bg-dark max-w-xl h-56 rounded-md mb-10 m-auto "> 
         <p className="my-5 mx-2">Kies uw voorkeur:</p>
         <div className="Rang_Kiezen mt-8">
+
         <h4 className="">Kies uw voorkeurszitplaats:</h4>
         <form>
         <div className="flex">
-        <input type="radio" id="rang1" name="voorkeur_rang" value="Rang1"/>
-        <label for="rang1">1</label>
-
-        <input type="radio" id="rang2" name="voorkeur_rang" value="Rang2"/>
-        <label for="rang2">2</label>
-
-        <input type="radio" id="rang3" name="voorkeur_rang" value="Rang3"/>
-        <label for="rang3">3</label>
-
-        <input type="radio" id="rang4" name="voorkeur_rang" value="Rang4"/>
-        <label for="rang4">4</label>
-
-        <input type="radio" id="rang5" name="voorkeur_rang" value="Ran5"/>
-        <label for="rang5">5</label>
-
+        {print()}
         <input type="radio" id="gehandicapt_rang" name="voorkeur_rang" value="Gehandicapt_Rang"/>
         <label for="gehandicapt_rang"><img className="h-6 w-6" src="https://cdn-icons-png.flaticon.com/512/657/657563.png"/></label>
         </div>
@@ -132,8 +132,30 @@ export function TicketPagina(){
 
             <div id="totaal">{totaal}</div>
         </span>
-        <div className="m-auto"><button className="bg-brightest p-2 rounded-md">Betaal</button></div>
+        <div className="m-auto"><button className="bg-red-900 hover:bg-red-700 py-2 px-3 rounded text-white my-3 flex justify-center">Betaal</button></div>
     </div>
     </>
 
+}
+function TweeRankZalen(){
+return <>
+<input type="radio" id="rang1" name="voorkeur_rang" value="Rang1"/>
+        <label for="rang1">1</label>
+
+        <input type="radio" id="rang2" name="voorkeur_rang" value="Rang2"/>
+        <label for="rang2">2</label>
+</>
+}
+
+function DrieRankZalen(){
+  return<>
+  <input type="radio" id="rang1" name="voorkeur_rang" value="Rang1"/>
+          <label for="rang1">1</label>
+  
+          <input type="radio" id="rang2" name="voorkeur_rang" value="Rang2"/>
+          <label for="rang2">2</label>
+  
+          <input type="radio" id="rang3" name="voorkeur_rang" value="Rang3"/>
+          <label for="rang3">3</label>
+          </>
 }
