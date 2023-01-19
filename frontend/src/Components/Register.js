@@ -70,7 +70,7 @@ export default function Register(){
                     />
                          
 
-                    <button className="bg-white hover:bg-red-600 py-2 px-8 rounded text-black m-5" type="submit">Account Aanmaken</button>
+                    <button className="bg-white hover:bg-red-600 py-2 px-8 rounded text-black m-5" type="submit" id="registerbtn">Account Aanmaken</button>
                 </form>
 
                 <Link to={'/inloggen'} className="link-btn m-5">Heeft u al een account? Dan kunt u hier inloggen.</Link>

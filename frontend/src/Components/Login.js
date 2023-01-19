@@ -45,7 +45,7 @@ export default function Login(){
                     <label htmlFor="password">Wachtwoord</label>
                     <input value={passw} onChange={(e) => setPassw(e.target.value)} type="password" id="password"/>
                     
-                    <button className="bg-red-900 hover:bg-red-700 py-2 px-8 rounded text-white m-5" type="submit">Inloggen</button>
+                    <button className="bg-red-900 hover:bg-red-700 py-2 px-8 rounded text-white m-5" type="submit" id="loginbtn">Inloggen</button>
                 </form>
 
                 <ReCAPTCHA
@@ -63,7 +63,6 @@ export default function Login(){
 
 
             </div>
-            <AdminMenu></AdminMenu>
         </div>
         
     );

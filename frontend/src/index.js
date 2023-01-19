@@ -16,6 +16,7 @@ import { EvenementenPagina } from './EvenementPagina/ContentEV';
 import { HomePagina } from './HomePagina/ContentHP';
 import EvenementenToevoegen from './Components/EvenementenToevoegen';
 import PrintTicket from './Components/PrintTicket';
+import AdminMenu from './Components/AdminMenu';
 
 
 const router = createBrowserRouter([
@@ -46,6 +47,10 @@ const router = createBrowserRouter([
  {
   path: "/evenementen-toevoegen",
   element: <Layout><EvenementenToevoegen/></Layout> 
+},
+{
+  path: "/admin",
+  element: <Layout><AdminMenu/></Layout> 
 }
 ])
 
