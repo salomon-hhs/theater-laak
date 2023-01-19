@@ -1,7 +1,10 @@
 
 import React, {useState} from "react";
 export function EvenementenPagina(){
-
+  const [Evenementen, setEvenement] = useState([]);
+  const fetchEvenement = () => {
+    fetch().
+  /*
   return <>
   
  <h2 className="ml-7 mb-2 text-4xl">Alle evenementen</h2>
@@ -41,7 +44,7 @@ export function EvenementenPagina(){
               <h3 className="text-left text-2xl text-normal">Step Up Another Sequel</h3>
               <div className="text-left"><a id="Step Up Another Sequel" className="meerInfoLink" href="/">Meer weten over Celebration of some sort</a></div>
             </div>
-  </div> </>
+  </div> </>*/
   
 }
 
