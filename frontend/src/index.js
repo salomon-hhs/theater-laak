@@ -11,6 +11,7 @@ import Login from './Components/Login';
 import Register from './Components/Register';
 import PasswVergeten from './Components/PasswVergeten';
 import OverOns from './Components/OverOns';
+import Doneren from './DonerenPagina/Doneren';
 import reportWebVitals from './reportWebVitals';
 import { EvenementenPagina } from './EvenementPagina/ContentEV';
 import { HomePagina } from './HomePagina/ContentHP';
@@ -39,7 +40,11 @@ const router = createBrowserRouter([
   {
     path: "/Evenementen",
     element: <Layout><EvenementenPagina/></Layout> 
- }
+  },
+  {
+    path: "/doneren",
+    element: <Layout><Doneren/></Layout>
+  }
 ])
 
 ReactDOM.createRoot(document.getElementById("root")).render(
