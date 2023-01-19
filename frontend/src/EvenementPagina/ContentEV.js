@@ -1,21 +1,51 @@
 
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 export function EvenementenPagina(){
   const [Evenementen, setEvenement] = useState([]);
+
   const fetchEvenement = () => {
-    fetch().
-  /*
+    fetch('https://localhost:3001/api/Evenement').
+    then((response) => response.json()).
+    then((data) => 
+    {
+      setEvenement(data);
+      console.log(data);
+
+    });
+  }
+
+  useEffect(() => {
+    fetchEvenement();
+  }, []);
+
   return <>
-  
  <h2 className="ml-7 mb-2 text-4xl">Alle evenementen</h2>
+ <div className="flex flex-wrap justify-center content-around" id="flex1">
+            {Evenementen ? Evenementen.map((Evenement) => (
+
+            <div className=" mx-2 my-6" key={Evenement.titel}>
+              <img className="Event_img rounded-2xl" src="https://cdn.pixabay.com/photo/2016/11/08/05/15/ramayana-festival-1807516_1280.jpg" alt="Link en een foto van een asian celebration evenement"/>
+              <h3 className="text-left text-2xl text-normal">{Evenement.titel}</h3>
+              <div className="text-left"><a id="" className="meerInfoLink" href="/Ticket">Meer weten over Celebration of some sort</a></div>
+            </div>
+             )) : null}
+  </div>
+      </>      
+}
+
+
+  /*
+  return <> 
+<h2 className="ml-7 mb-2 text-4xl">Alle evenementen</h2>
  <div className="flex flex-wrap justify-center content-around" id="flex1">
             <div className=" mx-2 my-6">
               <img className="Event_img rounded-2xl" src="https://cdn.pixabay.com/photo/2016/11/08/05/15/ramayana-festival-1807516_1280.jpg" alt="Link en een foto van een asian celebration evenement"/>
               <h3 className="text-left text-2xl text-normal">Chinese New Years</h3>
               <div className="text-left"><a id="Chinese_Ney_Years" className="meerInfoLink" href="/">Meer weten over Celebration of some sort</a></div>
             </div>
+            </>
             
-            <div className="mx-2 my-6">
+            /<div className="mx-2 my-6">
              <img className="Event_img rounded-2xl" src="https://cdn.pixabay.com/photo/2016/09/13/07/35/walking-dead-1666584_1280.jpg" alt="Link en een foto van de walking dead evenement"/>
              <h3 className="text-left text-2xl text-normal">The Walking Dead</h3>
              <div className="text-left"><a id="The_Walking_Dead" className="meerInfoLink" href="/">Meer weten over Celebration of some sort</a></div>
@@ -44,9 +74,9 @@ export function EvenementenPagina(){
               <h3 className="text-left text-2xl text-normal">Step Up Another Sequel</h3>
               <div className="text-left"><a id="Step Up Another Sequel" className="meerInfoLink" href="/">Meer weten over Celebration of some sort</a></div>
             </div>
-  </div> </>*/
-  
-}
+  </div> </>
+  */
+
 
 export function TicketPagina(props){
   //this should be a fetch one day
