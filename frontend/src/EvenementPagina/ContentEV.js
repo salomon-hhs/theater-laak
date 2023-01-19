@@ -125,7 +125,7 @@ export function TicketPagina(props){
             </div>
 
             <span className="flex flex-row space-x-28 bg-dark max-w-xl text-center p-2 px-3 rounded-md">
-                <div><p className="text-center" id="Datum">Datum</p></div>
+                <div><p className="text-center" id="Datum">{Evenement ? Evenement.Datum: null}</p></div>
 
                 <div><p id="Prijs">{prijs}</p></div>
 
