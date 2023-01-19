@@ -23,29 +23,54 @@ public sealed class EvenementStepDefinitions
     public EvenementStepDefinitions(DatabaseData databaseData)
     {
         _databaseData = databaseData;
-        _client = new RestClient("http://localhost:3001/");
+        _client = new RestClient("https://localhost:5001/");
 
         ServicePointManager.ServerCertificateValidationCallback +=
             (sender, cert, chain, sslPolicyErrors) => true;
     }
 
-    [Given("er zijn geen evenementen")]
-    public async Task GeenEvenementen()
+    [Given("niks")]
+    public async Task Niks()
     {
         _databaseData.Context.Evenementen.RemoveRange(_databaseData.Context.Evenementen);
         await _databaseData.Context.SaveChangesAsync();
     }
 
-    // TODO: This is to test that Specflow works, delete this
-    [Given("er is niks aan de hand")]
-    public async void NiksAanDeHand()
+    [Given("evenement met titel (.*) bestaat")]
+    public async Task EvenementBestaat(string titel)
     {
+        var evenement = new Evenement() { Datum = DateTime.Now, titel = titel, beschrijving = "Beschrijving", Zaal = null };
+        await _databaseData.Context.Evenementen.AddAsync(evenement);
+        await _databaseData.Context.SaveChangesAsync();
     }
 
-    // TODO: This is to test that Specflow works, delete this
-    [Then("mag alles")]
-    public async void AllesGoed()
+    [When("evenement met titel (.*) wordt aangemaakt")]
+    public async Task EvenementMetNaamAanmaken(String titel)
     {
-        Assert.True(true);
+        var mockEvent = new MockEvent() { datum = DateTime.Now, titel = titel, beschrijving = "Beschrijving", zaal = 0 };
+        var request = new RestRequest("api/Evenement").AddJsonBody(mockEvent);
+        response = await _client.PostAsync(request);
+    }
+
+    [When("evenement met titel (.*) wordt verwijderd")]
+    public async Task EvenementMetTitelVerwijderen(String titel)
+    {
+        var evenement = _databaseData.Context.Evenementen.First(e => e.titel == titel);
+        var request = new RestRequest("api/Evenement/" + evenement.Id);
+        response = await _client.DeleteAsync(request);
+    }
+
+    [Then("zijn er geen evenementen")]
+    public async void ThenGeenEvenementen()
+    {
+        var count = await _databaseData.Context.Evenementen.CountAsync();
+        Assert.Equal(0, count);
+    }
+
+    [Then("bestaat er een evenement met titel (.*)")]
+    public async void EvenementMetTitelBestaat(String titel)
+    {
+        var bestaat = await _databaseData.Context.Evenementen.AnyAsync(e => e.titel == titel);
+        Assert.True(bestaat);
     }
 }

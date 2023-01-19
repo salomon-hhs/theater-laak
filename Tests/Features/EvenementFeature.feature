@@ -1,9 +1,12 @@
 Feature: Evenement
 
-Scenario: NiksAanDeHandAllesOk
-    Given er is niks aan de hand
-    Then mag alles
+Scenario: VerwijderenWerkt
+    Given evenement met titel Welkom bestaat
+    When evenement met titel Welkom wordt verwijderd
+    Then zijn er geen evenementen
 
-Scenario: NiksAanDeHandAllesOk2
-    Given er is niks aan de hand
-    Then mag alles
+Scenario: AanmakenWerkt
+    Given evenement met titel Welkom bestaat
+    When evenement met titel Hallo wordt aangemaakt
+    Then bestaat er een evenement met titel Welkom
+    And bestaat er een evenement met titel Hallo
