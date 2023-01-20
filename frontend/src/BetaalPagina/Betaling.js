@@ -1,4 +1,4 @@
-import react from 'react'
+import react, {useEffect, useState} from 'react'
 
 export default function Betaling() {
     const success = Request.body.success();
