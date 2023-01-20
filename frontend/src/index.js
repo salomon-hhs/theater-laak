@@ -6,13 +6,49 @@ import {
 } from "react-router-dom";
 import './index.css';
 import Home from './Home';
+import Layout from './Components/Layout';
+import Login from './Components/Login';
+import Register from './Components/Register';
+import PasswVergeten from './Components/PasswVergeten';
+import OverOns from './Components/OverOns';
+import Doneren from './DonerenPagina/Doneren';
 import reportWebVitals from './reportWebVitals';
+import { EvenementenPagina, TicketPagina } from './EvenementPagina/ContentEV';
+import { HomePagina } from './HomePagina/ContentHP';
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home />
+    element: <Layout><HomePagina/></Layout>
   },
+  {
+    path: "/inloggen",
+    element: <Layout><Login /></Layout>
+  },
+  {
+    path: "/registreren",
+    element: <Layout><Register /></Layout>
+  },
+  {
+    path: "/wachtwoord_vergeten",
+    element: <Layout><PasswVergeten /></Layout>
+  },
+  {
+    path: "/over-ons",
+    element: <Layout><OverOns /></Layout>
+  },
+  {
+    path: "/Evenementen",
+    element: <Layout><EvenementenPagina/></Layout> 
+  },
+  {
+    path: "/doneren",
+    element: <Layout><Doneren/></Layout>
+  }, 
+  {
+    path: "/Ticket/:id",
+    element: <Layout><TicketPagina/></Layout> 
+  }
 ])
 
 ReactDOM.createRoot(document.getElementById("root")).render(
