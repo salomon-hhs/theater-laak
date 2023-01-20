@@ -14,6 +14,7 @@ import OverOns from './Components/OverOns';
 import reportWebVitals from './reportWebVitals';
 import { EvenementenPagina, TicketPagina } from './EvenementPagina/ContentEV';
 import { HomePagina } from './HomePagina/ContentHP';
+import Betaling from "./BetaalPagina/Betaling";
 
 const router = createBrowserRouter([
   {
@@ -39,12 +40,16 @@ const router = createBrowserRouter([
   {
     path: "/Evenementen",
     element: <Layout><EvenementenPagina/></Layout> 
- }, 
- {
+  },
+  {
   path: "/Ticket/:id",
- element: <Layout><TicketPagina/></Layout> 
-}
-])
+  element: <Layout><TicketPagina/></Layout>
+  },
+  {
+    path: "/Betaling",
+    element: <Layout><Betaling/></Layout>
+  }
+  ])
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
