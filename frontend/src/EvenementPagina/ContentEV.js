@@ -144,7 +144,7 @@ export function TicketPagina(props){
 
                 <div id="totaal">{totaal}</div>
             </span>
-            <div className="m-auto"><button className="bg-red-900 hover:bg-red-700 py-2 px-3 rounded text-white my-3 flex justify-center">Betaal</button></div>
+            <div className="m-auto"><button onClick={""} className="bg-red-900 hover:bg-red-700 py-2 px-3 rounded text-white my-3 flex justify-center">Betaal</button></div>
         </div>
     </>
     )
