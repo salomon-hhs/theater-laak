@@ -1,4 +1,6 @@
 import React, {useState} from "react";
+import {Link} from 'react-router-dom';
+
 
 export default function EvenementenToevoegen() {
     const[id,setId]= useState('');
@@ -53,6 +55,11 @@ export default function EvenementenToevoegen() {
 
     return (
         <div className="auth-form text-black">
+
+            <p className='mt-5'>Terug naar Menu</p>
+            <button className="bg-red-900 hover:bg-red-700 py-2 px-8 rounded text-white m-5" id='backToMenu'>
+                <Link to={'/admin'}> Menu</Link>
+            </button>
             <h2 className="text-2xl text-left text-white m-5">Evenementen Toevoegen</h2>
             
             <label htmlFor="naamEvent">Evenementnaam</label>

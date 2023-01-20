@@ -1,4 +1,6 @@
-import React, {useState} from 'react'
+import React, {useState} from 'react';
+import {Link} from 'react-router-dom';
+
 
 export default function PrintTicket(){
 
@@ -23,7 +25,7 @@ export default function PrintTicket(){
         <div>
             <h2 className="text-2xl text-left text-white m-5">Print Ticket</h2>
 
-            <form>
+            <form className='text-black'>
                 <input  id='searchbar'
                     type='text'
                     value={ticketId}
@@ -38,6 +40,10 @@ export default function PrintTicket(){
 
                 </div>
             </form>
+            <p className='mt-5'>Terug naar Menu</p>
+            <button className="bg-red-900 hover:bg-red-700 py-2 px-8 rounded text-white m-5 " id='backToMenuFromPrint'>
+                <Link to={'/admin'}> Menu</Link>
+            </button>
 
         </div>
     );

@@ -54,22 +54,31 @@ describe('Print tickets', () => {
   });
 });
 
-/*describe('Header links', () => {
-  it('allows a user to navigate to different pages', () => {
-    cy.visit('http://localhost:3000/');
-    cy.get('[url="/inloggen"]').click();
-    //cy.get('.NavButton').contains('Inloggen').click();
-    
-    cy.url().should('include', '/inloggen');
-  });
-});*/
+describe('Admin menu', () => {
+  it('it allows admin to go back to admin menu', () => {
+    cy.visit('http://localhost:3000/print-ticket');
+    cy.get('#backToMenuFromPrint').click();
+    cy.url().should('include', '/admin');
+    cy.wait(1000);
 
-describe('Footer links', () => {
-  it('renders the correct links', () => {
-    cy.visit('http://localhost:3000/');
-    //cy.get('a[href="/evenementen"]',{ multiple: true }).click();
-    //cy.url().should('include', '/evenementen');
-    //cy.get('[data-testid="footer-link-doneer"]').should('contain', 'Doneer');
-    //cy.get('[data-testid="footer-link-over-ons"]').should('contain', 'Over Ons');
+    cy.visit('http://localhost:3000/evenementen-toevoegen');
+    cy.get('#backToMenu').click();
+    cy.url().should('include', '/admin');
+  });
+});
+
+describe('Login API Test', () => {
+  it('Should be able to login', () => {
+      cy.intercept({
+          method: 'POST',
+          url: 'https://localhost:3001/api/Account/inloggen',
+      }).as('loginRequest');
+      //Submit login form with username and password
+      cy.get('@loginRequest').then((xhr) => {
+          expect(xhr.request.body).to.deep.equal({
+              "Username": "gbnaam",
+              "password": "passw"
+          });
+      });
   });
 });
