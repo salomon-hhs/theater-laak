@@ -8,6 +8,7 @@ module.exports = {
       colors: {
         'dark': '#601818',
         'darkest': '#281010',
+        'brightest': '#940000',
       },
       fontFamily: {
         'logo': ['"Cinzel Decorative"', ...defaultTheme.fontFamily.serif]

@@ -263,7 +263,15 @@ namespace backend.Migrations
                     b.Property<int>("ZaalId")
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("alt")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("beschrijving")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("img")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -314,19 +322,21 @@ namespace backend.Migrations
 
             modelBuilder.Entity("backend.Data.Ticket", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("EvenementId")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("GebruikerId")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<int>("RangId")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("Id", "EvenementId", "GebruikerId");
+                    b.HasKey("Id");
 
                     b.HasIndex("EvenementId");
 
