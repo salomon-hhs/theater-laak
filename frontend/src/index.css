@@ -593,6 +593,10 @@ video {
   }
 }
 
+.m-auto {
+  margin: auto;
+}
+
 .m-4 {
   margin: 1rem;
 }
@@ -680,8 +684,12 @@ video {
   display: flex;
 }
 
-.h-56 {
-  height: 14rem;
+.hidden {
+  display: none;
+}
+
+.h-6 {
+  height: 1.5rem;
 }
 
 .h-6 {
