@@ -15,7 +15,7 @@ export default function Register(props){
     const handleSubmit = async (e)=>{ /*e stands for event handler*/
         e.preventDefault(); {/*if you don't don't do this the page is going to get reloaded and then you will lose the state*/}
         //console.log(email);
-        await fetch("https://theater-laak-api.azurewebsites.net/api/Account/registreer", {
+        await fetch("https://localhost:3001/api/Account/registreer", {
             "method": "POST",
             "headers": { 'Content-Type': 'application/json'},
             "body": JSON.stringify({

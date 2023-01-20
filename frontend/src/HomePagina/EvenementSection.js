@@ -5,7 +5,7 @@ export function EvenementenHP() {
   const [Evenementen, setEvenement] = useState([]);
 
   const fetchEvenementen = () => {
-    fetch('https://theater-laak-api.azurewebsites.net/api/Evenement').
+    fetch('https://localhost:3001/api/Evenement').
     then((response) => response.json()).
     then((data) => 
     {
