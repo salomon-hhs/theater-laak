@@ -15,6 +15,7 @@ import Doneren from './DonerenPagina/Doneren';
 import reportWebVitals from './reportWebVitals';
 import { EvenementenPagina, TicketPagina } from './EvenementPagina/ContentEV';
 import { HomePagina } from './HomePagina/ContentHP';
+import Betaling from "./BetaalPagina/Betaling";
 
 const router = createBrowserRouter([
   {
@@ -42,13 +43,17 @@ const router = createBrowserRouter([
     element: <Layout><EvenementenPagina/></Layout> 
   },
   {
+  path: "/Ticket/:id",
+  element: <Layout><TicketPagina/></Layout>
+  },
+  {
+    path: "/Betaling",
+    element: <Layout><Betaling/></Layout>
+  },
+  {
     path: "/doneren",
     element: <Layout><Doneren/></Layout>
-  }, 
-  {
-    path: "/Ticket/:id",
-    element: <Layout><TicketPagina/></Layout> 
-  }
+  },
 ])
 
 ReactDOM.createRoot(document.getElementById("root")).render(
