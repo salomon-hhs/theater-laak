@@ -9,7 +9,7 @@ export default function Login(props){ /*props is a way to pass on value to child
 
     const handleSubmit = async (e) => { /*e stands for event handler*/
         e.preventDefault();
-        await fetch("https://localhost:3001/api/Account/login", {
+        await fetch("https://theater-laak-api.azurewebsites.net/api/Account/login", {
             "method": "POST",
             "headers": { 'Content-Type': 'application/json'},
             "body": JSON.stringify({

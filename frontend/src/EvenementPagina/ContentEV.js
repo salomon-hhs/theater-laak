@@ -5,7 +5,7 @@ export function EvenementenPagina(){
   const [Evenementen, setEvenement] = useState([]);
 
   const fetchEvenementen = () => {
-    fetch('https://localhost:3001/api/Evenement').
+    fetch('https://theater-laak-api.azurewebsites.net/api/Evenement').
     then((response) => response.json()).
     then((data) => 
     {
@@ -43,7 +43,7 @@ export function TicketPagina(props){
     const [Evenement, setEvenement] = useState();
 
     function fetchEvent() {
-        fetch('https://localhost:3001/api/Evenement/' + id)
+        fetch('https://theater-laak-api.azurewebsites.net/api/Evenement/' + id)
             .then(r => r.json())
             .then(o => { setEvenement(o)
                 console.log(Evenement)
