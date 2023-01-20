@@ -593,6 +593,10 @@ video {
   }
 }
 
+.m-auto {
+  margin: auto;
+}
+
 .m-4 {
   margin: 1rem;
 }
@@ -611,6 +615,16 @@ video {
   margin-bottom: 1.5rem;
 }
 
+.my-5 {
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.my-3 {
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
 .my-4 {
   margin-top: 1rem;
   margin-bottom: 1rem;
@@ -626,17 +640,20 @@ video {
   margin-bottom: 2.5rem;
 }
 
-.my-5 {
-  margin-top: 1.25rem;
-  margin-bottom: 1.25rem;
-}
-
 .mb-2 {
   margin-bottom: 0.5rem;
 }
 
 .ml-7 {
   margin-left: 1.75rem;
+}
+
+.mb-10 {
+  margin-bottom: 2.5rem;
+}
+
+.mt-8 {
+  margin-top: 2rem;
 }
 
 .mb-28 {
@@ -659,24 +676,24 @@ video {
   margin-top: 1.25rem;
 }
 
-.mb-24 {
-  margin-bottom: 6rem;
-}
-
 .flex {
   display: flex;
 }
 
-.h-56 {
-  height: 14rem;
+.hidden {
+  display: none;
+}
+
+.h-6 {
+  height: 1.5rem;
 }
 
 .min-h-screen {
   min-height: 100vh;
 }
 
-.w-3 {
-  width: 0.75rem;
+.w-6 {
+  width: 1.5rem;
 }
 
 .max-w-xl {
@@ -783,6 +800,10 @@ video {
   background-color: rgb(148 0 0 / var(--tw-bg-opacity));
 }
 
+.object-cover {
+  object-fit: cover;
+}
+
 .p-2 {
   padding: 0.5rem;
 }
@@ -826,14 +847,14 @@ video {
   padding-right: 2rem;
 }
 
-.py-3 {
-  padding-top: 0.75rem;
-  padding-bottom: 0.75rem;
-}
-
 .px-3 {
   padding-left: 0.75rem;
   padding-right: 0.75rem;
+}
+
+.py-3 {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
 }
 
 .pr-6 {
@@ -894,6 +915,10 @@ video {
 
 .uppercase {
   text-transform: uppercase;
+}
+
+.lowercase {
+  text-transform: lowercase;
 }
 
 .text-black {
@@ -1067,8 +1092,12 @@ input[type=radio] {
 }
 
 input[type=radio]:checked {
-  background: url(https://www.flaticon.com/free-icon/close_1828778) no-repeat center center;
+  background: url(data:image/gif;base64,R0lGODlhAQABAPAAAP///////yH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==) no-repeat center;
   background-size: 9px 9px;
+}
+
+input[type=radio]:focus {
+  outline-color: transparent;
 }
 
 .hover\:bg-white:hover {
@@ -1104,14 +1133,14 @@ input[type=radio]:checked {
   text-decoration-line: underline;
 }
 
-.focus\:bg-white:focus {
-  --tw-bg-opacity: 1;
-  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
-}
-
 .focus\:bg-darkest:focus {
   --tw-bg-opacity: 1;
   background-color: rgb(40 16 16 / var(--tw-bg-opacity));
+}
+
+.focus\:bg-white:focus {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
 .focus\:font-bold:focus {
