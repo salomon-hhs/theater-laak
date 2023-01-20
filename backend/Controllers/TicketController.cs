@@ -19,6 +19,9 @@ public class TicketInfo
     
     [Required(ErrorMessage = "Rank number is required")]
     public int rank { get; set; }
+
+    [Required(ErrorMessage = "Ticket status is required")]
+    public Boolean Ticket_Paid {get; set;}
 }
 
 public class UserEvent
@@ -47,7 +50,7 @@ namespace backend.Controllers
         
 
         [HttpPost("addTicket")]
-        public async Task<ActionResult> PostEvenement([FromBody] TicketInfo t)
+        public async Task<ActionResult> PostTicket([FromBody] TicketInfo t)
         {
 
             if (_context.Rangen == null || _context.Evenementen == null)
@@ -75,12 +78,13 @@ namespace backend.Controllers
             Ticket ticket = new Ticket()
             {
                 Evenement = e, EvenementId = e.Id, Gebruiker = _context.Gebruikers.Find(t.UserId),
-                GebruikerId = t.UserId, Rang = rank , Id = id
+                GebruikerId = t.UserId, Rang = rank , Id = id, TicketBetaald = false
             };
             _context.Tickets.Add(ticket);
             await _context.SaveChangesAsync();
             
             return CreatedAtAction("GetTicket", new { id = ticket.Id }, ticket);
+
         }
         
         [HttpGet]
