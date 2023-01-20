@@ -51,7 +51,8 @@ export function TicketPagina(props){
         fetch('https://localhost:3001/api/Evenement/' + id)
             .then(r => r.json())
             .then(o => { setEvenement(o)
-                console.log(Evenement)
+                console.log(o)
+                setDate(o ? o.datum : "")
             })
     }
 
@@ -66,30 +67,24 @@ export function TicketPagina(props){
     }
 
     function parseDate(d) {
-        return (d.split('T')[0] + " " + d.split('T')[1])
+        return (
+            <>
+                {d.split('T')[1]} <br/> {d.split('T')[0]}
+            </>
+        )
     }
 
     useEffect(() => {
         fetchEvent()
-        setDate(Evenement ? parseDate(Evenement.datum) : "")
         checkAvailable()
     }, [])
 
    const[totaal, PlusMinTotaal]= useState(0);
    const[aantal, PlusMinAantal]= useState(0);
+
+   const [selection, setSelection] = useState(3);
+
    let prijs = 12.50;
-   let aantalRang = 3;
-
-    function print(){
-       if(aantalRang === 2){
-        return <TweeRankZalen/>
-          }
-          else{
-            return <DrieRankZalen/>
-          }
-        }
-
-    
 
     function Plus(){
         if(aantal >= 5){
@@ -111,6 +106,19 @@ export function TicketPagina(props){
             }
     }
 
+    function handleSubmit(selection) {
+        fetch('https://fakepay.azurewebsites.net', {
+            "method": 'POST',
+            "headers": {'Content-Type': 'application/x-www-form-urlencoded'},
+            "body": {
+                amount: '20',
+                reference: 'testFromFrontend',
+                url: 'https://localhost:3001/Betaling'
+            }
+        })
+        //create object
+    }
+
     return (
     <>
         <div className="max-w-xl m-auto mb-10">
@@ -118,71 +126,56 @@ export function TicketPagina(props){
         <p id="Evenement_ID">{Evenement ? Evenement.beschrijving : "" }</p>
         </div>
 
-        <div className="bg-dark max-w-xl h-56 rounded-md mb-10 m-auto ">
+        <div className="bg-dark max-w-xl rounded-md mb-10 m-auto p-4">
             <p className="my-5 mx-2">Kies uw voorkeur:</p>
             <div className="Rang_Kiezen mt-8">
 
             <h4 className="">Kies uw voorkeurszitplaats:</h4>
             <form>
             <div className="flex">
-                <input disabled={!rang1} hidden={!rang1} type="radio" id="rang1" name="voorkeur_rang" value="Rang1"/>
+                <input onClick={() => setSelection(1)} disabled={!rang1} hidden={!rang1} type="radio" id="rang1" name="voorkeur_rang" value="Rang1"/>
                 <label hidden={!rang1} htmlFor="rang1">1</label>
 
-                <input disabled={!rang2} hidden={!rang2} type="radio" id="rang2" name="voorkeur_rang" value="Rang2"/>
+                <input onClick={() => setSelection(2)} disabled={!rang2} hidden={!rang2} type="radio" id="rang2" name="voorkeur_rang" value="Rang2"/>
                 <label hidden={!rang2} htmlFor="rang2">2</label>
 
-                <input disabled={!rang3} hidden={!rang3} type="radio" id="rang3" name="voorkeur_rang" value="Rang3"/>
+                <input onClick={() => setSelection(3)} disabled={!rang3} hidden={!rang3} type="radio" id="rang3" name="voorkeur_rang" value="Rang3"/>
                 <label hidden={!rang3} htmlFor="rang3">3</label>
 
-                <input type="radio" id="gehandicapt_rang" name="voorkeur_rang" value="Gehandicapt_Rang"/>
+                <input onClick={() => setSelection(3)} type="radio" id="gehandicapt_rang" name="voorkeur_rang" value="Gehandicapt_Rang"/>
                 <label htmlFor="gehandicapt_rang"><img className="h-6 w-6" src="https://cdn-icons-png.flaticon.com/512/657/657563.png"/></label>
             </div>
 
-            <button className="bg-red-900 hover:bg-red-700 py-2 px-3 rounded text-white my-3 flex justify-center" type="submit">Preferentie toepassen</button>
+            {/*<button className="bg-red-900 hover:bg-red-700 py-2 px-3 rounded text-white my-3 flex justify-center" type="submit">Preferentie toepassen</button>*/}
             </form>
             </div>
 
         </div>
 
-
         <div className="max-w-xl mb-10 m-auto ">
-            <div className="flex flex-row space-x-24 mb-2">
+            <div className="flex flex-row space-x-24 mb-2 justify-center">
                 <h3>Datum</h3>
                 <h3>Prijs</h3>
-                <h3>Aantal</h3>
-                <h3>Totaal</h3>
+                {/*<h3>Aantal</h3>*/}
+                {/*<h3>Totaal</h3>*/}
             </div>
 
-            <span className="flex flex-row space-x-28 bg-dark max-w-xl text-center p-2 px-3 rounded-md">
-                <div><p className="text-center" id="Datum">{Evenement ? date : null}</p></div>
+            <span className="flex flex-row space-x-28 bg-dark max-w-xl text-center p-2 px-3 rounded-md justify-center">
+                <div><p className="text-center" id="Datum">{Evenement ? parseDate(date) : ""}</p></div>
 
-                <div><p id="Prijs">{prijs}</p></div>
+                <div><p id="Prijs">€{prijs.toFixed(2)}</p></div>
 
-                <div>
-                    <span><button className="bg-darkest px-2 rounded-md rotate-180"  onClick={Plus} >v</button></span>
-                    <span>--</span>
-                    <span><button className="bg-darkest px-2 rounded-md"  onClick={Min}>v</button></span>
-                    <span id="aantal"> ({aantal})</span>
-                </div>
+                {/*<div>*/}
+                {/*    <span><button className="bg-darkest px-2 rounded-md rotate-180"  onClick={Plus} >v</button></span>*/}
+                {/*    <span>--</span>*/}
+                {/*    <span><button className="bg-darkest px-2 rounded-md"  onClick={Min}>v</button></span>*/}
+                {/*    <span id="aantal"> ({aantal})</span>*/}
+                {/*</div>*/}
 
-                <div id="totaal">{totaal}</div>
+                {/*<div id="totaal">{totaal}</div>*/}
             </span>
-            <div className="m-auto"><button className="bg-red-900 hover:bg-red-700 py-2 px-3 rounded text-white my-3 flex justify-center">Betaal</button></div>
+            <div className="m-auto"><button onClick={() => handleSubmit(selection)} className="bg-red-900 hover:bg-red-700 py-2 px-3 rounded text-white my-3 flex justify-center">Betaal</button></div>
         </div>
     </>
     )
-}
-function TweeRankZalen(){
-return <>
-<input type="radio" id="rang1" name="voorkeur_rang" value="Rang1"/>
-        <label htmlFor="rang1">1</label>
-
-        <input type="radio" id="rang2" name="voorkeur_rang" value="Rang2"/>
-        <label htmlFor="rang2">2</label>
-</>
-}
-
-function DrieRankZalen(){
-  return<>
-          </>
 }
