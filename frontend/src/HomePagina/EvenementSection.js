@@ -2,8 +2,6 @@ import { Link } from "react-router-dom";
 import React, {useEffect, useState} from "react";
 import "../tailwind.css";
 export function EvenementenHP() {
-  const maxLenght = 50;
-
   const [Evenementen, setEvenement] = useState([]);
 
   const fetchEvenementen = () => {
