@@ -559,27 +559,38 @@ video {
   --tw-backdrop-sepia:  ;
 }
 
-.absolute {
-  position: absolute;
+.container {
+  width: 100%;
 }
 
-.relative {
-  position: relative;
+@media (min-width: 640px) {
+  .container {
+    max-width: 640px;
+  }
 }
 
-.inset-0 {
-  top: 0px;
-  right: 0px;
-  bottom: 0px;
-  left: 0px;
+@media (min-width: 768px) {
+  .container {
+    max-width: 768px;
+  }
 }
 
-.z-0 {
-  z-index: 0;
+@media (min-width: 1024px) {
+  .container {
+    max-width: 1024px;
+  }
 }
 
-.z-10 {
-  z-index: 10;
+@media (min-width: 1280px) {
+  .container {
+    max-width: 1280px;
+  }
+}
+
+@media (min-width: 1536px) {
+  .container {
+    max-width: 1536px;
+  }
 }
 
 .m-4 {
@@ -615,6 +626,11 @@ video {
   margin-bottom: 2.5rem;
 }
 
+.my-5 {
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
 .mb-2 {
   margin-bottom: 0.5rem;
 }
@@ -623,8 +639,8 @@ video {
   margin-left: 1.75rem;
 }
 
-.mb-20 {
-  margin-bottom: 5rem;
+.mb-28 {
+  margin-bottom: 7rem;
 }
 
 .mt-10 {
@@ -643,28 +659,42 @@ video {
   margin-top: 1.25rem;
 }
 
-.mb-28 {
-  margin-bottom: 7rem;
+.mb-24 {
+  margin-bottom: 6rem;
 }
 
 .flex {
   display: flex;
 }
 
-.h-64 {
-  height: 16rem;
+.h-56 {
+  height: 14rem;
 }
 
 .min-h-screen {
   min-height: 100vh;
 }
 
-.w-64 {
-  width: 16rem;
+.w-3 {
+  width: 0.75rem;
+}
+
+.max-w-xl {
+  max-width: 36rem;
 }
 
 .flex-grow {
   flex-grow: 1;
+}
+
+.rotate-180 {
+  --tw-rotate: 180deg;
+  -webkit-transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+          transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.flex-row {
+  flex-direction: row;
 }
 
 .flex-col {
@@ -679,16 +709,24 @@ video {
   align-content: space-around;
 }
 
-.items-center {
-  align-items: center;
-}
-
 .justify-center {
   justify-content: center;
 }
 
 .justify-between {
   justify-content: space-between;
+}
+
+.space-x-24 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 0;
+  margin-right: calc(6rem * var(--tw-space-x-reverse));
+  margin-left: calc(6rem * calc(1 - var(--tw-space-x-reverse)));
+}
+
+.space-x-28 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 0;
+  margin-right: calc(7rem * var(--tw-space-x-reverse));
+  margin-left: calc(7rem * calc(1 - var(--tw-space-x-reverse)));
 }
 
 .self-center {
@@ -745,19 +783,6 @@ video {
   background-color: rgb(148 0 0 / var(--tw-bg-opacity));
 }
 
-.bg-red-100 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(254 226 226 / var(--tw-bg-opacity));
-}
-
-.bg-cover {
-  background-size: cover;
-}
-
-.bg-center {
-  background-position: center;
-}
-
 .p-2 {
   padding: 0.5rem;
 }
@@ -804,6 +829,11 @@ video {
 .py-3 {
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
+}
+
+.px-3 {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
 }
 
 .pr-6 {
@@ -858,17 +888,8 @@ video {
   line-height: 2.5rem;
 }
 
-.text-6xl {
-  font-size: 3.75rem;
-  line-height: 1;
-}
-
 .font-bold {
   font-weight: 700;
-}
-
-.font-semibold {
-  font-weight: 600;
 }
 
 .uppercase {
@@ -893,14 +914,6 @@ video {
 .text-\[\#bada55\] {
   --tw-text-opacity: 1;
   color: rgb(186 218 85 / var(--tw-text-opacity));
-}
-
-.opacity-0 {
-  opacity: 0;
-}
-
-.duration-300 {
-  transition-duration: 300ms;
 }
 
 .x-responsive {
@@ -987,8 +1000,8 @@ p{
 }
 
 .Event_img{
-  width: 275px;
-  height: 350px;
+  width: 280px;
+  height: 325px;
 }
 
 .meerInfoLink{
@@ -998,6 +1011,40 @@ p{
 
 .meerInfoLink:hover{
   color: rgb(182, 182, 182);
+}
+
+.container {
+  position: relative;
+  width: 50%;
+}
+
+.Event_imgh{
+  opacity: 1;
+  width: 280px;
+  height: 325px;
+  transition: .5s ease;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+}
+
+.middle {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 70%;
+  text-align: left;
+}
+
+.container:hover .Event_imgh {
+  opacity: 0.5;
+}
+
+.container:hover .middle {
+  opacity: 0.9;
+}
+
+.text{
+  margin-left: 10px;
 }
 
 #flex1{
@@ -1011,6 +1058,17 @@ p{
   bottom: 8px;
   left: 16px;
   color:black
+}
+
+input[type=radio] {
+  border: 1px solid #fff;
+  padding: 0.5em;
+  -webkit-appearance: none;
+}
+
+input[type=radio]:checked {
+  background: url(https://www.flaticon.com/free-icon/close_1828778) no-repeat center center;
+  background-size: 9px 9px;
 }
 
 .hover\:bg-white:hover {
@@ -1044,10 +1102,6 @@ p{
 
 .hover\:underline:hover {
   text-decoration-line: underline;
-}
-
-.hover\:opacity-100:hover {
-  opacity: 1;
 }
 
 .focus\:bg-white:focus {
@@ -1103,3 +1157,6 @@ p{
     line-height: 2rem;
   }
 }
+
+
+
