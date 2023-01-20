@@ -21,10 +21,10 @@ public class MockEvent
     
     [Required(ErrorMessage = "beschrijving is required")]
     public string beschrijving { get; set; }
-    
+
     [Required(ErrorMessage = "img is required")]
     public string img { get; set; }
-    
+
     [Required(ErrorMessage = "alt-text is required")]
     public string alt { get; set; }
 }
@@ -108,6 +108,7 @@ namespace backend.Controllers
         [HttpPost]
         public async Task<ActionResult<Evenement>> PostEvenement([FromBody] MockEvent e)
         {
+            Console.WriteLine(e.zaal);
             if (_context.Evenementen == null)
             {
                 return Problem("Entity set 'DatabaseContext.Evenementen'  is null.");

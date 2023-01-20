@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using backend.Data;
 
@@ -10,9 +11,11 @@ using backend.Data;
 namespace backend.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20230118192611_ticket_fix")]
+    partial class ticketfix
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.1");
@@ -263,15 +266,7 @@ namespace backend.Migrations
                     b.Property<int>("ZaalId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("alt")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("beschrijving")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("img")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -323,20 +318,18 @@ namespace backend.Migrations
             modelBuilder.Entity("backend.Data.Ticket", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("EvenementId")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("GebruikerId")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<int>("RangId")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("Id");
+                    b.HasKey("Id", "EvenementId", "GebruikerId");
 
                     b.HasIndex("EvenementId");
 
