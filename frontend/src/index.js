@@ -42,13 +42,17 @@ const router = createBrowserRouter([
     element: <Layout><EvenementenPagina/></Layout> 
   },
   {
+  path: "/Ticket/:id",
+  element: <Layout><TicketPagina/></Layout>
+  },
+  {
+    path: "/Betaling",
+    element: <Layout><Betaling/></Layout>
+  },
+  {
     path: "/doneren",
     element: <Layout><Doneren/></Layout>
-  }, 
-  {
-    path: "/Ticket/:id",
-    element: <Layout><TicketPagina/></Layout> 
-  }
+  },
 ])
 
 ReactDOM.createRoot(document.getElementById("root")).render(
