@@ -19,9 +19,7 @@ public class TicketInfo
     
     [Required(ErrorMessage = "Rank number is required")]
     public int rank { get; set; }
-
-    [Required(ErrorMessage = "Ticket status is required")]
-    public Boolean Ticket_Paid {get; set;}
+    
 }
 
 public class UserEvent
@@ -167,5 +165,26 @@ namespace backend.Controllers
 
             return rank;
         }
+
+    [HttpPost("Status")]
+    public async Task<ActionResult<Ticket>> PostStatus(int id){
+         if (_context.Tickets == null)
+            {
+                return NotFound();
+            }
+            var ticket = await _context.Tickets.FindAsync(id);
+            
+            if (ticket == null)
+            {
+                return NotFound();
+            }
+
+            ticket.TicketBetaald = true;
+            await _context.SaveChangesAsync();
+            return Ok();
+        }
+
     }
+
+
 }

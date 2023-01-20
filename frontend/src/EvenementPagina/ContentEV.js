@@ -36,11 +36,31 @@ export function EvenementenPagina(){
 }
 
 
+
+
+
+
 export function TicketPagina(props){
 
     let {id} = useParams();
 
     const [Evenement, setEvenement] = useState();
+
+    const [selection, setSelection] = useState(3);
+
+    function fetchTicket(){
+      fetch('https//localhost:3000/api/Ticket/addTicket'), {
+        "method": "POST",
+        "headers": { 'Content-Type': 'application/json'},
+        "body": JSON.stringify({
+            "EventId": {id},
+            "UserId": {user},
+            "rank": {selection},
+           
+        })
+    };
+}
+      }
 
     function fetchEvent() {
         fetch('https://theater-laak-api.azurewebsites.net/api/Evenement/' + id)
@@ -55,10 +75,22 @@ export function TicketPagina(props){
         return (d.split('T')[0] + " " + d.split('T')[1])
     }
 
+
+
+    
+    const [user, setUser] = useState("");
+
     useEffect(() => {
         fetchEvent()
-        setDate(Evenement ? parseDate(Evenement.datum) : "")
-    }, [])
+        setDate(Evenement ? parseDate(Evenement.datum) : "");
+
+        
+        const loggedInUser = sessionStorage.getItem("userId");
+        if (loggedInUser) {
+            const foundUser = loggedInUser;
+            setUser(foundUser);
+        }
+    }, []);
 
    const[totaal, PlusMinTotaal]= useState(0);
    const[aantal, PlusMinAantal]= useState(0);
@@ -144,11 +176,11 @@ export function TicketPagina(props){
 
                 <div id="totaal">{totaal}</div>
             </span>
-            <div className="m-auto"><button onClick={""} className="bg-red-900 hover:bg-red-700 py-2 px-3 rounded text-white my-3 flex justify-center">Betaal</button></div>
+            <div className="m-auto"><button onClick={() => fetchTicket} className="bg-red-900 hover:bg-red-700 py-2 px-3 rounded text-white my-3 flex justify-center">Betaal</button></div>
         </div>
     </>
     )
-}
+
 function TweeRankZalen(){
 return <>
 <input type="radio" id="rang1" name="voorkeur_rang" value="Rang1"/>
