@@ -21,6 +21,8 @@ public static class Program
         System.Console.WriteLine("Setting up services...");
 
         builder.Services.AddControllers()
+            .AddJsonOptions(x =>
+                x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles)
             .AddApplicationPart(typeof(Program).Assembly)
             .AddControllersAsServices();
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -44,14 +46,11 @@ public static class Program
                 ValidateAudience = true,
                 ValidateLifetime = true,
                 ValidateIssuerSigningKey = true,
-                ValidIssuer = "https://localhost:3001",
-                ValidAudience = "https://localhost:3001",
+                ValidIssuer = "https://theater-laak-api.azurewebsites.net",
+                ValidAudience = "https://delightful-field-0b7540403.2.azurestaticapps.net",
                 IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("awef98awef978haweof8g7aw789efhh789awef8h9awh89efh89awe98f89uawef9j8aw89hefawef"))
             };
         });
-
-        builder.Services.AddControllers().AddJsonOptions(x =>
-            x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 
         var app = builder.Build();
 
