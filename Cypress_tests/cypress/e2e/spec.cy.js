@@ -142,8 +142,8 @@ describe('Admin menu', () => {
   });
 });
 
-describe("My Cypress Test", () => {
-  it("Intercepts and stubs a response", () => {
+describe('Login API Test', () => {
+  it('Intercepts and stubs a login', () => {
     // Intercept and stub the response for a GET request to login
 
     cy.intercept("/inloggen", {
@@ -172,5 +172,5 @@ describe("My Cypress Test", () => {
 
 cy.visit('/')
 cy.wait('@apiCheck').then((interception) => {
-  assert.isNotNull(interception.response.body, '1st API call has data')
+  assert.isNotNull(interception.response.body, 'donatie API call has data')
 })*/
