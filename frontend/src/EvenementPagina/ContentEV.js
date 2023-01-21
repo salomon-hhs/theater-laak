@@ -5,7 +5,7 @@ export function EvenementenPagina(){
   const [Evenementen, setEvenement] = useState([]);
 
   const fetchEvenementen = () => {
-    fetch('https://theater-laak-api.azurewebsites.net/api/Evenement').
+    fetch('https://localhost:3001/api/Evenement').
     then((response) => response.json()).
     then((data) => 
     {
@@ -40,7 +40,7 @@ export function EvenementenPagina(){
 
 
 
-export function TicketPagina(props){
+export function TicketPagina(props) {
 
     let {id} = useParams();
 
@@ -48,43 +48,8 @@ export function TicketPagina(props){
 
     const [selection, setSelection] = useState(3);
 
-    function fetchTicket(){
-      fetch('https//localhost:3000/api/Ticket/addTicket'), {
-        "method": "POST",
-        "headers": { 'Content-Type': 'application/json'},
-        "body": JSON.stringify({
-            "EventId": {id},
-            "UserId": {user},
-            "rank": {selection},
-           
-        })
-    };
-}
-      }
-
-    function fetchEvent() {
-        fetch('https://theater-laak-api.azurewebsites.net/api/Evenement/' + id)
-            .then(r => r.json())
-            .then(o => { setEvenement(o)
-                console.log(Evenement)
-            })
-    }
-    const [date, setDate] = useState("")
-
-    function parseDate(d) {
-        return (d.split('T')[0] + " " + d.split('T')[1])
-    }
-
-
-
-    
-    const [user, setUser] = useState("");
-
     useEffect(() => {
         fetchEvent()
-        setDate(Evenement ? parseDate(Evenement.datum) : "");
-
-        
         const loggedInUser = sessionStorage.getItem("userId");
         if (loggedInUser) {
             const foundUser = loggedInUser;
@@ -92,94 +57,136 @@ export function TicketPagina(props){
         }
     }, []);
 
-   const[totaal, PlusMinTotaal]= useState(0);
-   const[aantal, PlusMinAantal]= useState(0);
-   let prijs = 12.50;
-   let aantalRang = 3;
+    function fetchEvent() {
+        fetch('https://localhost:3001/api/Evenement/' + id)
+            .then(r => r.json())
+            .then(o => {
+                setEvenement(o)
+                setDate(parseDate(o.datum))
+            })
+    }
 
-    function print(){
-       if(aantalRang === 2){
-        return <TweeRankZalen/>
-          }
-          else{
+    function fetchTicket() {
+        fetch('https//localhost:3000/api/Ticket/addTicket', {
+            "method": "POST",
+            "headers": {'Content-Type': 'application/json'},
+            "body": JSON.stringify({
+                "EventId": {id},
+                "UserId": {user},
+                "rank": {selection},
+            })
+        })
+    }
+
+
+    const [date, setDate] = useState("")
+
+    function parseDate(d) {
+        return (d.split('T')[0] + " " + d.split('T')[1])
+    }
+
+
+    const [user, setUser] = useState("");
+
+
+    const [totaal, PlusMinTotaal] = useState(0);
+    const [aantal, PlusMinAantal] = useState(0);
+    let prijs = 12.50;
+    let aantalRang = 3;
+
+    function print() {
+        if (aantalRang === 2) {
+            return <TweeRankZalen/>
+        } else {
             return <DrieRankZalen/>
-          }
         }
+    }
 
-    
 
-    function Plus(){
-        if(aantal >= 5){
-        alert("U heeft te veel tickets geresiveerd");
-        }
-        else{
+    function Plus() {
+        if (aantal >= 5) {
+            alert("U heeft te veel tickets geresiveerd");
+        } else {
             PlusMinTotaal(totaal + prijs);
             PlusMinAantal(aantal + 1);
         }
     }
 
-    function Min(){
-        if(aantal <= 0){
+    function Min() {
+        if (aantal <= 0) {
             alert("Dat mag niet");
-            }
-            else{
+        } else {
             PlusMinAantal(aantal - 1);
             PlusMinTotaal(totaal - prijs);
-            }
+        }
     }
 
     return (
-    <>
-        <div className="max-w-xl m-auto mb-10">
-        <h2 id="Evenement_Naam">{Evenement ? Evenement.titel : ""}</h2>
-        <p id="Evenement_ID">{Evenement ? Evenement.beschrijving : "" }</p>
-        </div>
-
-        <div className="bg-dark max-w-xl h-56 rounded-md mb-10 m-auto ">
-            <p className="my-5 mx-2">Kies uw voorkeur:</p>
-            <div className="Rang_Kiezen mt-8">
-
-            <h4 className="">Kies uw voorkeurszitplaats:</h4>
-            <form>
-            <div className="flex">
-            {print()}
-            <input type="radio" id="gehandicapt_rang" name="voorkeur_rang" value="Gehandicapt_Rang"/>
-            <label htmlFor="gehandicapt_rang"><img className="h-6 w-6" src="https://cdn-icons-png.flaticon.com/512/657/657563.png"/></label>
+        <>
+        <form method="POST" action="https://fakepay.azurewebsites.net">
+            <div className="max-w-xl m-auto mb-10">
+                <h2 id="Evenement_Naam">{Evenement ? Evenement.titel : ""}</h2>
+                <p id="Evenement_ID">{Evenement ? Evenement.beschrijving : ""}</p>
             </div>
 
-            <button className="bg-red-900 hover:bg-red-700 py-2 px-3 rounded text-white my-3 flex justify-center" type="submit">Preferentie toepassen</button>
-            </form>
+            <div className="bg-dark max-w-xl h-56 rounded-md mb-10 m-auto ">
+                <p className="my-5 mx-2">Kies uw voorkeur:</p>
+                <div className="Rang_Kiezen mt-8">
+
+                    <h4 className="">Kies uw voorkeurszitplaats:</h4>
+
+                        <div className="flex">
+                            {print()}
+                            <input type="radio" id="gehandicapt_rang" name="voorkeur_rang" value="Gehandicapt_Rang"/>
+                            <label htmlFor="gehandicapt_rang"><img className="h-6 w-6"
+                           src="https://cdn-icons-png.flaticon.com/512/657/657563.png"/></label>
+                            <input id="amount" value={prijs} name="amount" type="text" hidden={true} aria-hidden={true}/>
+                            <input id="reference" value="Test" name="reference" type="text" hidden={true} aria-hidden={true}/>
+                            <input id="url" value="http://localhost:3000/" name="url" type="text" hidden={true} aria-hidden={true}/>
+                        </div>
+
+                        <button
+                            className="bg-red-900 hover:bg-red-700 py-2 px-3 rounded text-white my-3 flex justify-center"
+                            type="submit">Preferentie toepassen
+                        </button>
+
+                </div>
+
             </div>
 
-        </div>
 
+            <div className="max-w-xl mb-10 m-auto ">
+                <div className="flex flex-row space-x-24 mb-2">
+                    <h3>Datum</h3>
+                    <h3>Prijs</h3>
+                    <h3>Aantal</h3>
+                    <h3>Totaal</h3>
+                </div>
 
-        <div className="max-w-xl mb-10 m-auto ">
-            <div className="flex flex-row space-x-24 mb-2">
-                <h3>Datum</h3>
-                <h3>Prijs</h3>
-                <h3>Aantal</h3>
-                <h3>Totaal</h3>
-            </div>
-
-            <span className="flex flex-row space-x-28 bg-dark max-w-xl text-center p-2 px-3 rounded-md">
+                <span className="flex flex-row space-x-28 bg-dark max-w-xl text-center p-2 px-3 rounded-md">
                 <div><p className="text-center" id="Datum">{Evenement ? date : null}</p></div>
 
                 <div><p id="Prijs">{prijs}</p></div>
 
                 <div>
-                    <span><button className="bg-darkest px-2 rounded-md rotate-180"  onClick={Plus} >v</button></span>
+                    <span><button className="bg-darkest px-2 rounded-md rotate-180" onClick={Plus}>v</button></span>
                     <span>--</span>
-                    <span><button className="bg-darkest px-2 rounded-md"  onClick={Min}>v</button></span>
+                    <span><button className="bg-darkest px-2 rounded-md" onClick={Min}>v</button></span>
                     <span id="aantal"> ({aantal})</span>
                 </div>
 
                 <div id="totaal">{totaal}</div>
             </span>
-            <div className="m-auto"><button onClick={() => fetchTicket} className="bg-red-900 hover:bg-red-700 py-2 px-3 rounded text-white my-3 flex justify-center">Betaal</button></div>
-        </div>
-    </>
+                <div className="m-auto">
+                    <button type="submit"
+                            className="bg-red-900 hover:bg-red-700 py-2 px-3 rounded text-white my-3 flex justify-center">Betaal
+                    </button>
+                </div>
+            </div>
+        </form>
+        </>
     )
+}
 
 function TweeRankZalen(){
 return <>
