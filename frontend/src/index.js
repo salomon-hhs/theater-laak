@@ -15,6 +15,7 @@ import Doneren from './DonerenPagina/Doneren';
 import reportWebVitals from './reportWebVitals';
 import { EvenementenPagina, TicketPagina } from './EvenementPagina/ContentEV';
 import { HomePagina } from './HomePagina/ContentHP';
+import Betaling from "./Betaalpagina/Betaal";
 
 const router = createBrowserRouter([
   {
@@ -48,6 +49,10 @@ const router = createBrowserRouter([
   {
     path: "/Ticket/:id",
     element: <Layout><TicketPagina/></Layout> 
+  },
+  {
+    path: "/Betaling/:status",
+    element: <Layout><Betaling/></Layout>
   }
 ])
 

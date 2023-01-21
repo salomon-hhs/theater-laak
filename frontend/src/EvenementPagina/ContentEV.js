@@ -1,6 +1,6 @@
-
 import React, {useEffect, useState} from "react";
 import {Link, useParams} from "react-router-dom";
+
 export function EvenementenPagina(){
   const [Evenementen, setEvenement] = useState([]);
 
@@ -31,8 +31,7 @@ export function EvenementenPagina(){
                   </div>
               )) : null}
           </div>
-    </>
-  )
+      </>  )
 }
 
 
@@ -44,18 +43,32 @@ export function TicketPagina(props) {
 
     let {id} = useParams();
 
+    const [rang1, setRang1] = useState(false);
+    const [rang2, setRang2] = useState(false);
+    const [rang3, setRang3] = useState(false);
+
     const [Evenement, setEvenement] = useState();
 
     const [selection, setSelection] = useState(3);
 
     useEffect(() => {
         fetchEvent()
+        checkAvailable()
         const loggedInUser = sessionStorage.getItem("userId");
         if (loggedInUser) {
-            const foundUser = loggedInUser;
-            setUser(foundUser);
+            setUser(loggedInUser);
         }
     }, []);
+
+    function checkAvailable() {
+        fetch("https://localhost:3001/api/Evenement/" + id + "/a")
+            .then(r => r.json())
+            .then(o => {
+                setRang1(o[0] ? o[0] : false)
+                setRang2(o[1] ? o[1] : false)
+                setRang3(o[2] ? o[2] : false)
+            })
+    }
 
     function fetchEvent() {
         fetch('https://localhost:3001/api/Evenement/' + id)
@@ -136,19 +149,22 @@ export function TicketPagina(props) {
                     <h4 className="">Kies uw voorkeurszitplaats:</h4>
 
                         <div className="flex">
-                            {print()}
-                            <input type="radio" id="gehandicapt_rang" name="voorkeur_rang" value="Gehandicapt_Rang"/>
-                            <label htmlFor="gehandicapt_rang"><img className="h-6 w-6"
-                           src="https://cdn-icons-png.flaticon.com/512/657/657563.png"/></label>
+                            <input onClick={() => setSelection(1)} disabled={!rang1} hidden={!rang1} type="radio" id="rang1" name="voorkeur_rang" value="Rang1"/>
+                            <label hidden={!rang1} htmlFor="rang1">1</label>
+
+                            <input onClick={() => setSelection(2)} disabled={!rang2} hidden={!rang2} type="radio" id="rang2" name="voorkeur_rang" value="Rang2"/>
+                            <label hidden={!rang2} htmlFor="rang2">2</label>
+
+                            <input onClick={() => setSelection(3)} disabled={!rang3} hidden={!rang3} type="radio" id="rang3" name="voorkeur_rang" value="Rang3"/>
+                            <label hidden={!rang3} htmlFor="rang3">3</label>
+
+                            <input onClick={() => setSelection(3)} type="radio" id="gehandicapt_rang" name="voorkeur_rang" value="Gehandicapt_Rang"/>
+                            <label htmlFor="gehandicapt_rang"><img className="h-6 w-6" src="https://cdn-icons-png.flaticon.com/512/657/657563.png"/></label>
+
                             <input id="amount" value={prijs} name="amount" type="text" hidden={true} aria-hidden={true}/>
                             <input id="reference" value="Test" name="reference" type="text" hidden={true} aria-hidden={true}/>
-                            <input id="url" value="http://localhost:3000/" name="url" type="text" hidden={true} aria-hidden={true}/>
+                            <input id="url" value="https://localhost:3001/Ticket/Status" name="url" type="text" hidden={true} aria-hidden={true}/>
                         </div>
-
-                        <button
-                            className="bg-red-900 hover:bg-red-700 py-2 px-3 rounded text-white my-3 flex justify-center"
-                            type="submit">Preferentie toepassen
-                        </button>
 
                 </div>
 
