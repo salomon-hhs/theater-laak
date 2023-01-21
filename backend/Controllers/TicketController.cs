@@ -27,7 +27,7 @@ public class Status
 {
     [Required(ErrorMessage = "success is required")]
     public bool success { get; set; }
-    
+
     [Required(ErrorMessage = "reference is required")]
     public string reference { get; set; }
 }
@@ -183,7 +183,7 @@ namespace backend.Controllers
         }
 
         //should validate payment status with payment provider here >:)
-        
+
         int id = reference;
          if (_context.Tickets == null)
             {
@@ -200,7 +200,7 @@ namespace backend.Controllers
             await _context.SaveChangesAsync();
             return Redirect("http://localhost:3000/Betaling/true");
         }
-    
+
 
     }
 }
