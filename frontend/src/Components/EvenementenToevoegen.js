@@ -89,10 +89,10 @@ export default function EvenementenToevoegen() {
             type="submit" id="addEvenement" onClick={handleAddEvent}>Toevoegen</button>
 
             <button className="bg-white hover:bg-red-700 py-2 px-8 rounded text-black m-5" 
-            type="submit" onClick={() => handleUpdateEvent(id)}>Updaten</button>
+            type="submit" id="updateEvent" onClick={() => handleUpdateEvent(id)}>Update</button>
 
             <button className="bg-white hover:bg-red-700 py-2 px-8 rounded text-black m-5" 
-            type="submit" onClick={() => handleDeleteEvent(id)}>Verwijder</button>
+            type="submit" id="deleteEvent" onClick={() => handleDeleteEvent(id)}>Verwijder</button>
 
 
         </div>

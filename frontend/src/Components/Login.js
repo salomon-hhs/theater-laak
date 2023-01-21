@@ -1,7 +1,6 @@
 import React, {useState} from "react";
 import {Link, redirect} from 'react-router-dom';
 import ReCAPTCHA from "react-google-recaptcha";
-import AdminMenu from "./AdminMenu";
 
 
 export default function Login(){ 

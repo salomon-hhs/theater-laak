@@ -12,6 +12,11 @@ export default function AdminMenu(){
                 <Link to={'/print-ticket'}> Print ticket</Link>
             </button>
             </div>
+            <div className='flex-col'>
+            <button className="bg-red-900 hover:bg-red-700 py-2 px-8 rounded text-white m-5 div flex-col" id='toAddZaalPage'>
+                <Link to={'/zaal-toevoegen'}> Zaal Toevoegen</Link>
+            </button>
+            </div>
         </div>
     );
 }
