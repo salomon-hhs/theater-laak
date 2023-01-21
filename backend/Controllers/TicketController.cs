@@ -166,7 +166,7 @@ namespace backend.Controllers
             return rank;
         }
 
-    [HttpPost("Status")]
+    [HttpPost("Status/{id}")]
     public async Task<ActionResult<Ticket>> PostStatus(int id){
          if (_context.Tickets == null)
             {
