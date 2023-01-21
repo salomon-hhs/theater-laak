@@ -15,7 +15,7 @@ import Doneren from './DonerenPagina/Doneren';
 import reportWebVitals from './reportWebVitals';
 import { EvenementenPagina, TicketPagina } from './EvenementPagina/ContentEV';
 import { HomePagina } from './HomePagina/ContentHP';
-import Betaling from "./Betaalpagina/Betaal";
+import Betaling from "./BetaalPagina/Betaal";
 
 const router = createBrowserRouter([
   {
