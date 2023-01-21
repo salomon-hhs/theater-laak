@@ -23,15 +23,6 @@ public class TicketInfo
     
 }
 
-public class Status
-{
-    [Required(ErrorMessage = "success is required")]
-    public bool success { get; set; }
-
-    [Required(ErrorMessage = "reference is required")]
-    public string reference { get; set; }
-}
-
 public class UserEvent
 {
     [Required(ErrorMessage = "EventId is required")]
