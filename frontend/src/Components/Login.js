@@ -53,7 +53,7 @@ export default function Login(){
                 />
 
                 <button className="link-btn">
-                    <Link to={'/registreren'}> geen account? Account aanmaken</Link>
+                    <Link to={'/registreren'}> Geen account? Account aanmaken</Link>
                 </button>
                 <br/>
                 <button className="link-btn m-5">
