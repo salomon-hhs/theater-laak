@@ -11,4 +11,6 @@ public class Ticket
     public Evenement Evenement { get; set; }
     
     public Rang Rang { get; set; }
+
+    public Boolean TicketBetaald{get; set;}
 }
