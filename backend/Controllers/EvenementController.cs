@@ -70,6 +70,43 @@ namespace backend.Controllers
 
             return evenement;
         }
+        
+        // GET: api/Evenement/5/a
+        [HttpGet("{id}/a")]
+        public async Task<ActionResult<List<Boolean>>> GetAvailability(int id)
+        {
+            List<Boolean> result = new List<bool>();
+
+            if (_context.Evenementen == null || _context.Zalen == null)
+            {
+                return NotFound();
+            }
+            var evenement = await _context.Evenementen.FindAsync(id);
+
+            if (evenement == null)
+            {
+                return NotFound();
+            }
+
+            var rangen = _context.Rangen.Where(r => r.Zaal.Id == evenement.ZaalId);
+
+            if (!rangen.Any())
+            {
+                return NotFound();
+            }
+
+            foreach (Rang rang in rangen)
+            {
+                result.Add(_context.Tickets.Count(t => t.Rang == rang && t.EvenementId == evenement.Id) < rang.Capaciteit);
+            }
+
+            if (result.Any())
+            {
+                return result;
+            }
+
+            return NotFound();
+        }
 
         // PUT: api/Evenement/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754

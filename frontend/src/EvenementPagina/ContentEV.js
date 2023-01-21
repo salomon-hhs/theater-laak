@@ -47,9 +47,14 @@ export function TicketPagina(props) {
     const [rang2, setRang2] = useState(false);
     const [rang3, setRang3] = useState(false);
 
+    const [user, setUser] = useState("");
+
     const [Evenement, setEvenement] = useState();
 
     const [selection, setSelection] = useState(3);
+    const [hidden, setHidden] = useState(true)
+    const [ref, setRef] = useState(0)
+
 
     useEffect(() => {
         fetchEvent()
@@ -75,64 +80,38 @@ export function TicketPagina(props) {
             .then(r => r.json())
             .then(o => {
                 setEvenement(o)
-                setDate(parseDate(o.datum))
+                setDate(o? o.datum : "")
             })
     }
 
     function fetchTicket() {
-        fetch('https//localhost:3000/api/Ticket/addTicket', {
+        setHidden(false)
+        fetch('https://localhost:3001/api/Ticket/addTicket', {
             "method": "POST",
             "headers": {'Content-Type': 'application/json'},
             "body": JSON.stringify({
-                "EventId": {id},
-                "UserId": {user},
-                "rank": {selection},
+                "EventId": id,
+                "UserId": user,
+                "rank": selection,
             })
-        })
+        }).then(r => r.json().then(o => {
+            setRef(o.id)
+            console.log(ref)
+        }))//hi
     }
 
 
     const [date, setDate] = useState("")
 
     function parseDate(d) {
-        return (d.split('T')[0] + " " + d.split('T')[1])
+        return (
+        <>
+        {d.split('T')[0]} <br/>{d.split('T')[1]}
+        </>
+        )
     }
 
-
-    const [user, setUser] = useState("");
-
-
-    const [totaal, PlusMinTotaal] = useState(0);
-    const [aantal, PlusMinAantal] = useState(0);
     let prijs = 12.50;
-    let aantalRang = 3;
-
-    function print() {
-        if (aantalRang === 2) {
-            return <TweeRankZalen/>
-        } else {
-            return <DrieRankZalen/>
-        }
-    }
-
-
-    function Plus() {
-        if (aantal >= 5) {
-            alert("U heeft te veel tickets geresiveerd");
-        } else {
-            PlusMinTotaal(totaal + prijs);
-            PlusMinAantal(aantal + 1);
-        }
-    }
-
-    function Min() {
-        if (aantal <= 0) {
-            alert("Dat mag niet");
-        } else {
-            PlusMinAantal(aantal - 1);
-            PlusMinTotaal(totaal - prijs);
-        }
-    }
 
     return (
         <>
@@ -162,8 +141,8 @@ export function TicketPagina(props) {
                             <label htmlFor="gehandicapt_rang"><img className="h-6 w-6" src="https://cdn-icons-png.flaticon.com/512/657/657563.png"/></label>
 
                             <input id="amount" value={prijs} name="amount" type="text" hidden={true} aria-hidden={true}/>
-                            <input id="reference" value="Test" name="reference" type="text" hidden={true} aria-hidden={true}/>
-                            <input id="url" value="https://localhost:3001/Ticket/Status" name="url" type="text" hidden={true} aria-hidden={true}/>
+                            <input id="reference" value={ref} name="reference" type="text" hidden={true} aria-hidden={true}/>
+                            <input id="url" value="https://localhost:3001/api/Ticket/Status" name="url" type="text" hidden={true} aria-hidden={true}/>
                         </div>
 
                 </div>
@@ -172,57 +151,31 @@ export function TicketPagina(props) {
 
 
             <div className="max-w-xl mb-10 m-auto ">
-                <div className="flex flex-row space-x-24 mb-2">
+                <div className="flex flex-row space-x-24 mb-2 justify-center">
                     <h3>Datum</h3>
                     <h3>Prijs</h3>
-                    <h3>Aantal</h3>
-                    <h3>Totaal</h3>
                 </div>
 
-                <span className="flex flex-row space-x-28 bg-dark max-w-xl text-center p-2 px-3 rounded-md">
-                <div><p className="text-center" id="Datum">{Evenement ? date : null}</p></div>
+                <span className="flex flex-row justify-center space-x-28 bg-dark max-w-xl text-center p-2 px-3 rounded-md">
+                <div><p className="text-center" id="Datum">{Evenement ? parseDate(date) : null}</p></div>
 
-                <div><p id="Prijs">{prijs}</p></div>
+                <div><p id="Prijs">€{prijs.toFixed(2)}</p></div>
 
-                <div>
-                    <span><button className="bg-darkest px-2 rounded-md rotate-180" onClick={Plus}>v</button></span>
-                    <span>--</span>
-                    <span><button className="bg-darkest px-2 rounded-md" onClick={Min}>v</button></span>
-                    <span id="aantal"> ({aantal})</span>
-                </div>
-
-                <div id="totaal">{totaal}</div>
-            </span>
+                </span>
                 <div className="m-auto">
-                    <button type="submit"
-                            className="bg-red-900 hover:bg-red-700 py-2 px-3 rounded text-white my-3 flex justify-center">Betaal
+                    <button onClick={fetchTicket} type="button"
+                            className="bg-red-900 hover:bg-red-700 py-2 px-3 rounded text-white my-3 flex justify-center">Reserveer
+                    </button>
+                    <button type="submit" disabled={hidden} aria-hidden={hidden}
+                            className={
+                        hidden ?
+                            "bg-red-900 hover:bg-red-700 py-2 px-3 rounded text-white my-3 flex justify-center hidden"
+                            : "bg-red-900 hover:bg-red-700 py-2 px-3 rounded text-white my-3 flex justify-center"
+                    }>Betaal
                     </button>
                 </div>
             </div>
         </form>
         </>
     )
-}
-
-function TweeRankZalen(){
-return <>
-<input type="radio" id="rang1" name="voorkeur_rang" value="Rang1"/>
-        <label htmlFor="rang1">1</label>
-
-        <input type="radio" id="rang2" name="voorkeur_rang" value="Rang2"/>
-        <label htmlFor="rang2">2</label>
-</>
-}
-
-function DrieRankZalen(){
-  return<>
-  <input type="radio" id="rang1" name="voorkeur_rang" value="Rang1"/>
-          <label htmlFor="rang1">1</label>
-  
-          <input type="radio" id="rang2" name="voorkeur_rang" value="Rang2"/>
-          <label htmlFor="rang2">2</label>
-  
-          <input type="radio" id="rang3" name="voorkeur_rang" value="Rang3"/>
-          <label htmlFor="rang3">3</label>
-          </>
 }

@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using backend.Data;
+using Newtonsoft.Json;
 
 public class TicketInfo
 {
@@ -20,6 +21,15 @@ public class TicketInfo
     [Required(ErrorMessage = "Rank number is required")]
     public int rank { get; set; }
     
+}
+
+public class Status
+{
+    [Required(ErrorMessage = "success is required")]
+    public bool success { get; set; }
+    
+    [Required(ErrorMessage = "reference is required")]
+    public string reference { get; set; }
 }
 
 public class UserEvent
@@ -50,8 +60,7 @@ namespace backend.Controllers
         [HttpPost("addTicket")]
         public async Task<ActionResult> PostTicket([FromBody] TicketInfo t)
         {
-
-            if (_context.Rangen == null || _context.Evenementen == null)
+            if (_context.Rangen == null || _context.Evenementen == null || _context.Gebruikers == null)
             {
                 return NotFound();
             }
@@ -63,8 +72,6 @@ namespace backend.Controllers
             {
                 return NotFound();
             }
-            
-            int id = _context.Tickets.Count();
 
             int number = _context.Tickets.Count(o => o.EvenementId == e.Id && o.Rang == rank);
 
@@ -76,7 +83,7 @@ namespace backend.Controllers
             Ticket ticket = new Ticket()
             {
                 Evenement = e, EvenementId = e.Id, Gebruiker = _context.Gebruikers.Find(t.UserId),
-                GebruikerId = t.UserId, Rang = rank , Id = id, TicketBetaald = false
+                GebruikerId = t.UserId, Rang = rank, TicketBetaald = false
             };
             _context.Tickets.Add(ticket);
             await _context.SaveChangesAsync();
@@ -167,7 +174,17 @@ namespace backend.Controllers
         }
 
     [HttpPost("Status")]
-    public async Task<ActionResult<Ticket>> PostStatus(int id){
+    [Consumes("application/x-www-form-urlencoded")]
+    public async Task<ActionResult<Ticket>> PostStatus([FromForm] bool succes, [FromForm] int reference)
+    {
+        if (!succes)
+        {
+            return Redirect("http://localhost:3000/Betaling/false");
+        }
+
+        //should validate payment status with payment provider here >:)
+        
+        int id = reference;
          if (_context.Tickets == null)
             {
                 return NotFound();
@@ -181,10 +198,9 @@ namespace backend.Controllers
 
             ticket.TicketBetaald = true;
             await _context.SaveChangesAsync();
-            return Ok();
+            return Redirect("http://localhost:3000/Betaling/true");
         }
+    
 
     }
-
-
 }
