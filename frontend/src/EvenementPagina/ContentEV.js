@@ -50,6 +50,8 @@ export function TicketPagina(props) {
     const [user, setUser] = useState("");
 
     const [Evenement, setEvenement] = useState();
+    const [date, setDate] = useState("")
+
 
     const [selection, setSelection] = useState(3);
     const [hidden, setHidden] = useState(true)
@@ -100,14 +102,11 @@ export function TicketPagina(props) {
         }))//hi
     }
 
-
-    const [date, setDate] = useState("")
-
     function parseDate(d) {
         return (
-        <>
-        {d.split('T')[0]} <br/>{d.split('T')[1]}
-        </>
+            <>
+                {d.split('T')[1]} <br/> {d.split('T')[0]}
+            </>
         )
     }
 
@@ -121,7 +120,7 @@ export function TicketPagina(props) {
                 <p id="Evenement_ID">{Evenement ? Evenement.beschrijving : ""}</p>
             </div>
 
-            <div className="bg-dark max-w-xl h-56 rounded-md mb-10 m-auto ">
+            <div className="bg-dark max-w-xl rounded-md mb-10 m-auto p-4">
                 <p className="my-5 mx-2">Kies uw voorkeur:</p>
                 <div className="Rang_Kiezen mt-8">
 
