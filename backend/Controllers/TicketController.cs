@@ -170,7 +170,7 @@ namespace backend.Controllers
     {
         if (!succes)
         {
-            return Redirect("http://localhost:3000/Betaling/false");
+            return Redirect("https://delightful-field-0b7540403.2.azurestaticapps.net/Betaling/false");
         }
 
         //should validate payment status with payment provider here >:)
@@ -189,9 +189,7 @@ namespace backend.Controllers
 
             ticket.TicketBetaald = true;
             await _context.SaveChangesAsync();
-            return Redirect("http://localhost:3000/Betaling/true");
+            return Redirect("https://delightful-field-0b7540403.2.azurestaticapps.net/Betaling/true");
         }
-
-
     }
 }
