@@ -1,5 +1,6 @@
 import {useState, useEffect} from 'react';
 import {useLocation} from "react-router-dom";
+import Urls from '../Urls';
 
 function Doneren() {
     const [data, setData] = useState(null);
@@ -23,9 +24,7 @@ function Doneren() {
         {data ? (data.length > 0 ? donations(data) : <p>"U heeft nog geen donaties gedaan."</p>) : <p>"Het is ons niet gelukt om uw donaties op te halen."</p>}
     </div>
 
-    let redirectUrl = "https%3A%2F%2Fdelightful-field-0b7540403.2.azurestaticapps.net%2Fdoneren";
-    // To test this locally, uncomment the next line:
-    //let redirectUrl = "localhost:3000%2Fdoneren";
+    let redirectUrl = encodeURIComponent(`${Urls.frontend}/doneren`);
 
     return <div className="text-white">
         <h1 className="text-2xl">Doneren</h1>

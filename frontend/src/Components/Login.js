@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import {Link, redirect} from 'react-router-dom';
 import ReCAPTCHA from "react-google-recaptcha";
+import Urls from "../Urls";
 
 
 export default function Login(props){ /*props is a way to pass on value to children elements/components */
@@ -9,7 +10,7 @@ export default function Login(props){ /*props is a way to pass on value to child
 
     const handleSubmit = async (e) => { /*e stands for event handler*/
         e.preventDefault();
-        await fetch("https://localhost:3001/api/Account/login", {
+        await fetch(`${Urls.backend}/api/Account/login`, {
             "method": "POST",
             "headers": { 'Content-Type': 'application/json'},
             "body": JSON.stringify({

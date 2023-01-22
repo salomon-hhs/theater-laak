@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import PasswordChecklist from "react-password-checklist"
 import invalidFoto from '../assets/invalid.png'; 
 import validFoto from '../assets/valid.png'; 
-
+import Urls from "../Urls";
 
 
 export default function Register(props){
@@ -15,7 +15,7 @@ export default function Register(props){
     const handleSubmit = async (e)=>{ /*e stands for event handler*/
         e.preventDefault(); {/*if you don't don't do this the page is going to get reloaded and then you will lose the state*/}
         //console.log(email);
-        await fetch("https://localhost:3001/api/Account/registreer", {
+        await fetch(`${Urls.backend}/api/Account/registreer`, {
             "method": "POST",
             "headers": { 'Content-Type': 'application/json'},
             "body": JSON.stringify({
