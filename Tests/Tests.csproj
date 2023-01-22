@@ -24,14 +24,20 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Drivers" />
-      <Folder Include="Features" />
-      <Folder Include="Hooks" />
       <Folder Include="Steps" />
     </ItemGroup>
 
     <ItemGroup>
         <ProjectReference Include="..\backend\backend.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="Features\ZaalFeature.feature.cs">
+        <DependentUpon>ZaalFeature.feature</DependentUpon>
+        <AutoGen>true</AutoGen>
+        <DesignTime>true</DesignTime>
+        <Visible>true</Visible>
+      </Compile>
     </ItemGroup>
 
 </Project>

@@ -17,13 +17,11 @@ public sealed class Hooks
     public Hooks(DatabaseData databaseData)
     {
         _databaseData = databaseData;
-        System.Console.WriteLine("Hooks");
     }
 
     [BeforeTestRun]
     public static async Task BeforeTestRun()
     {
-        System.Console.WriteLine("Hallo?");
         _host = await Program.CreateWebApplication(new string[] { }, true);
         _host.Start();
     }
@@ -39,7 +37,6 @@ public sealed class Hooks
     {
         _databaseData._host = _host!;
 
-        System.Console.WriteLine("BeforeScenario");
 
         // We have to clean the database before we can test
         _databaseData.Context.Gebruikers.RemoveRange(_databaseData.Context.Gebruikers);
