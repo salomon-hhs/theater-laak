@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {Link} from 'react-router-dom';
-
+import Urls from "../Urls";
 
 export default function EvenementenToevoegen() {
     const[naamEvent,setnaamEvent]= useState('');
@@ -16,7 +16,7 @@ export default function EvenementenToevoegen() {
     // Add Evenement
     const handleAddEvent = async (e) => {
         e.preventDefault();
-        await fetch("https://localhost:3001/api/Evenement/", {
+        await fetch(`${Urls.backend}/api/Evenement/`, {
             "method": "POST",
             "headers": { 'Content-Type': 'application/json' },
             "body": JSON.stringify({
@@ -33,7 +33,7 @@ export default function EvenementenToevoegen() {
     // // Delete Evenement
     // const handleDeleteEvent = async (e, id) => {
     //     e.preventDefault();
-    //     await fetch("https://localhost:3001/api/Evenement/"+id, {
+    //     await fetch(`${Urls.backend}/api/Evenement/${id}`, {
     //         "method": "DELETE",
     //         "headers": { 'Content-Type': 'application/json' },
     //     });

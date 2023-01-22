@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
-
+import Urls from '../Urls';
 
 export default function PrintTicket(){
 
@@ -14,7 +14,7 @@ export default function PrintTicket(){
 
     const handleSubmit = async (e, id)=>{ 
         e.preventDefault(); 
-        await fetch(`https://localhost:3001/api/tickets/${id}`, {
+        await fetch(`${Urls.backend}/api/tickets/${id}`, {
             "method": "GET",
             "headers": { 'Content-Type': 'application/json'},
         });
