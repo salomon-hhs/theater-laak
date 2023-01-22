@@ -8,11 +8,6 @@ export default function AdminMenu(){
             </button>
 
             <div className='flex-col'>
-            <button className="bg-red-900 hover:bg-red-700 py-2 px-8 rounded text-white m-5 div flex-col" id='toPrintPage'>
-                <Link to={'/print-ticket'}> Print ticket</Link>
-            </button>
-            </div>
-            <div className='flex-col'>
             <button className="bg-red-900 hover:bg-red-700 py-2 px-8 rounded text-white m-5 div flex-col" id='toAddZaalPage'>
                 <Link to={'/zaal-toevoegen'}> Zaal Toevoegen</Link>
             </button>
