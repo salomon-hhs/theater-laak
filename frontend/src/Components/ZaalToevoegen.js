@@ -27,7 +27,7 @@ export default function ZaalToevoegen(){
 
     return(
         <div className="auth-form text-black">
-            <p className='mt-5'>Terug naar Menu</p>
+            <p className='mt-5 text-white'>Terug naar Menu</p>
             <button className="bg-red-900 hover:bg-red-700 py-2 px-8 rounded text-white m-5" id='backToMenuFromZaal'>
                 <Link to={'/admin'}> Menu</Link>
             </button>

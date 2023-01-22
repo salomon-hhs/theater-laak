@@ -3,12 +3,11 @@ import {Link} from 'react-router-dom';
 
 
 export default function EvenementenToevoegen() {
-    const[id,setId]= useState('');
     const[naamEvent,setnaamEvent]= useState('');
-    const[bandnaam,setBandnaam]= useState('');
+    //const[bandnaam,setBandnaam]= useState('');
     const[zaalnr,setZaalnr]= useState('');
     const[beschrijving,setBeschrijving]= useState('');
-    const[zaalbeschrijving,setZaalBeschrijving]= useState('');
+    //const[zaalbeschrijving,setZaalBeschrijving]= useState('');
     const[datum,setDatum]= useState('');
     const[img,setImg]= useState('');
     const[alt,setAlt]= useState('');
@@ -25,8 +24,8 @@ export default function EvenementenToevoegen() {
                 "zaal": zaalnr,
                 "beschrijving": beschrijving,
                 "datum": datum,
-                // "img": img,
-                // "alt": alt
+                "img": img,
+                "alt": alt
             })
         });
     }
@@ -43,7 +42,7 @@ export default function EvenementenToevoegen() {
     return (
         <div className="auth-form text-black">
 
-            <p className='mt-5'>Terug naar Menu</p>
+            <p className='mt-5 text-white'>Terug naar Menu</p>
             <button className="bg-red-900 hover:bg-red-700 py-2 px-8 rounded text-white m-5" id='backToMenu'>
                 <Link to={'/admin'}> Menu</Link>
             </button>

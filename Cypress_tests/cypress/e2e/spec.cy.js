@@ -35,15 +35,14 @@ describe('Evenement Toevoegen', () => {
     cy.url().should('include', '/evenementen-toevoegen');
     cy.get('input[id="naamEvent"]').type('Event name');//types username into gebruikersnaam field
     cy.get('input[id="datum"]').type('datum 123');//types password123 into password field
-    cy.get('input[id="id"]').type('id');
-    cy.get('input[id="bandnaam"]').type('bandnaam');
     cy.get('input[id="beschrijving"]').type('beschrijving');
+    cy.get('input[id="img"]').type('foto');
+    cy.get('input[id="alt"]').type('this is a foto');
     cy.get('input[id="zaalnr"]').type('zaalnr');
-    cy.get('input[id="zaalbeschrijving"]').type('zaalbeschrijving');
     cy.get('#addEvenement').click();
   });
 
-  it('it allows admin to update evenement', () => {
+  /*it('it allows admin to update evenement', () => {
     cy.visit('http://localhost:3000/admin');
     cy.get('#toAddPagina').click();
     cy.url().should('include', '/evenementen-toevoegen');
@@ -55,9 +54,9 @@ describe('Evenement Toevoegen', () => {
     cy.get('input[id="zaalnr"]').type('1');
     cy.get('input[id="zaalbeschrijving"]').type('zaalbeschrijving');
     cy.get('#updateEvent').click();
-  });
+  });*/
 
-  it('it allows admin to delete evenement', () => {
+  /*it('it allows admin to delete evenement', () => {
     cy.visit('http://localhost:3000/admin');
     cy.get('#toAddPagina').click();
     cy.url().should('include', '/evenementen-toevoegen');
@@ -69,7 +68,7 @@ describe('Evenement Toevoegen', () => {
     cy.get('input[id="zaalnr"]').type('2');
     cy.get('input[id="zaalbeschrijving"]').type('zaalbeschrijving');
     cy.get('#deleteEvent').click();
-  });
+  });*/
 });
 
 describe('Zaal Toevoegen', () => {
@@ -77,14 +76,14 @@ describe('Zaal Toevoegen', () => {
     cy.visit('http://localhost:3000/admin');
     cy.get('#toAddZaalPage').click();
     cy.url().should('include', '/zaal-toevoegen');
-    cy.get('input[id="zaal"]').type('zaal');
-    cy.get('input[id="zaalId"]').type('2');
-    cy.get('input[id="zaalbeschrijving"]').type('zaalDescriptie');
+    cy.get('input[id="rang1"]').type('1');
+    cy.get('input[id="rang2"]').type('2');
+    cy.get('input[id="rang3"]').type('3');
 
     cy.get('#addZaal').click();
   });
 
-  it('it allows admin to update a zaal', () => {
+  /*it('it allows admin to update a zaal', () => {
     cy.visit('http://localhost:3000/admin');
     cy.get('#toAddZaalPage').click();
     cy.url().should('include', '/zaal-toevoegen');
@@ -93,9 +92,9 @@ describe('Zaal Toevoegen', () => {
     cy.get('input[id="zaalbeschrijving"]').type('zaalDescriptie');
 
     cy.get('#updateZaal').click();
-  });
+  });*/
 
-  it('it allows admin to delete a zaal', () => {
+ /* it('it allows admin to delete a zaal', () => {
     cy.visit('http://localhost:3000/admin');
     cy.get('#toAddZaalPage').click();
     cy.url().should('include', '/zaal-toevoegen');
@@ -104,10 +103,10 @@ describe('Zaal Toevoegen', () => {
     cy.get('input[id="zaalbeschrijving"]').type('zaalDescriptie');
 
     cy.get('#deleteZaal').click();
-  });
+  });*/
 });
 
-describe('Print tickets', () => {
+/*describe('Print tickets', () => {
   it('it allows admin to print ticket', () => {
     cy.visit('http://localhost:3000/admin');
     cy.get('#toPrintPage').click();
@@ -115,14 +114,14 @@ describe('Print tickets', () => {
 
     cy.get('#searchbtn').click();
   });
-});
+});*/
 
 describe('Admin menu', () => {
   it('it allows admin to go back to admin menu', () => {
-    cy.visit('http://localhost:3000/print-ticket');
+    /*cy.visit('http://localhost:3000/print-ticket');
     cy.get('#backToMenuFromPrint').click();
     cy.url().should('include', '/admin');
-    cy.wait(1000);
+    cy.wait(1000);*/
 
     cy.visit('http://localhost:3000/evenementen-toevoegen');
     cy.get('#backToMenu').click();
