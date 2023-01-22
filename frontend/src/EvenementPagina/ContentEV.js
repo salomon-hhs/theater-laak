@@ -26,7 +26,7 @@ export function EvenementenPagina(){
           <div className="flex flex-wrap justify-center content-around" id="flex1">
               {Evenementen ? Evenementen.map((Evenement) => (
                   <div className=" mx-2 my-6" key={Evenement.id}>
-                      <Link to={"/Ticket/"+ Evenement.id}><img className="Event_img rounded-2xl object-cover" src={Evenement.img} alt={Evenement.alt}/></Link>
+                      <Link to={"/Ticket/"+ Evenement.id} id='eventlink'><img className="Event_img rounded-2xl object-cover" src={Evenement.img} alt={Evenement.alt}/></Link>
                       <h3 className="text-left text-2xl text-normal">{Evenement.titel}</h3>
                       <div className="text-left"><Link to={"/Ticket/"+ Evenement.id}>{Evenement.beschrijving}</Link></div>
                   </div>
@@ -163,10 +163,10 @@ export function TicketPagina(props) {
 
                 </span>
                 <div className="m-auto">
-                    <button onClick={fetchTicket} type="button"
+                    <button onClick={fetchTicket} type="button" id="reserveerBtn"
                             className="bg-red-900 hover:bg-red-700 py-2 px-3 rounded text-white my-3 flex justify-center">Reserveer
                     </button>
-                    <button type="submit" disabled={hidden} aria-hidden={hidden}
+                    <button id="betaalBtn" type="submit" disabled={hidden} aria-hidden={hidden}
                             className={
                         hidden ?
                             "bg-red-900 hover:bg-red-700 py-2 px-3 rounded text-white my-3 flex justify-center hidden"

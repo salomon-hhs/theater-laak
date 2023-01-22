@@ -6,7 +6,7 @@ describe('visit website', () => {
 
 
 describe('Register', () => {
-  it('allows a user to login', () => {
+  it('allows a user to register', () => {
     cy.visit('http://localhost:3000/registreren');
     cy.get('input[id="vnaam"]').type('username');//types username into gebruikersnaam field
     cy.get('input[id="email"]').type('username@gmail.com');//types username into gebruikersnaam field
@@ -27,6 +27,35 @@ describe('Login', () => {
    // cy.get('.user-name').should('contain', 'username');
   });
 });
+
+describe('Event', () => {
+  it('allows a user to choose an event and buy a ticket', () => {
+    cy.visit('http://localhost:3000/evenementen');
+    cy.get('#eventlink').click();
+    cy.url().should('include', '/Ticket/10');
+    cy.get('#rang1').click();
+    cy.wait(1000);
+    cy.get('#reserveerBtn').click();
+    
+    cy.wait(1000);
+    cy.get('#betaalBtn').click();
+    cy.wait(1000);
+
+    cy.intercept({
+      method: 'POST',
+      url: 'https://fakepay.azurewebsites.net/',
+    }).then(interception => {
+      if (interception) {
+        expect(interception.status).to.eq(200)
+        expect(interception.response.body).to.deep.eq({ success: true })
+      } else {
+        console.error("interception is null")
+      }
+    })
+        
+  });
+});
+
 
 describe('Evenement Toevoegen', () => {
   it('it allows admin to add evenement', () => {
@@ -87,9 +116,9 @@ describe('Zaal Toevoegen', () => {
     cy.visit('http://localhost:3000/admin');
     cy.get('#toAddZaalPage').click();
     cy.url().should('include', '/zaal-toevoegen');
-    cy.get('input[id="zaal"]').type('zaal');
-    cy.get('input[id="zaalId"]').type('1');
-    cy.get('input[id="zaalbeschrijving"]').type('zaalDescriptie');
+     cy.get('input[id="rang1"]').type('10');
+    cy.get('input[id="rang2"]').type('1');
+    cy.get('input[id="rang3"]').type('2');
 
     cy.get('#updateZaal').click();
   });*/
@@ -98,9 +127,9 @@ describe('Zaal Toevoegen', () => {
     cy.visit('http://localhost:3000/admin');
     cy.get('#toAddZaalPage').click();
     cy.url().should('include', '/zaal-toevoegen');
-    cy.get('input[id="zaal"]').type('zaal');
-    cy.get('input[id="zaalId"]').type('1');
-    cy.get('input[id="zaalbeschrijving"]').type('zaalDescriptie');
+    cy.get('input[id="rang1"]').type('10');
+    cy.get('input[id="rang2"]').type('1');
+    cy.get('input[id="rang3"]').type('2');
 
     cy.get('#deleteZaal').click();
   });*/
