@@ -54,13 +54,13 @@ public static class Program
 
         var app = builder.Build();
 
-        if (!testing) {
-            using (var scope = app.Services.CreateScope())
-            using (var context = scope.ServiceProvider.GetService<DatabaseContext>()) {
-                await context.Database.EnsureCreatedAsync();
-                await context.Database.MigrateAsync();
-            }
-        }
+        //if (!testing) {
+        //    using (var scope = app.Services.CreateScope())
+        //    using (var context = scope.ServiceProvider.GetService<DatabaseContext>()) {
+        //        await context.Database.EnsureCreatedAsync();
+        //        await context.Database.MigrateAsync();
+        //    }
+        //}
 
         // Configure the HTTP request pipeline.
         if (app.Environment.IsDevelopment())
