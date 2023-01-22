@@ -1,11 +1,12 @@
 import React, {useEffect, useState} from "react";
 import {Link, useParams} from "react-router-dom";
+import Urls from "../Urls";
 
 export function EvenementenPagina(){
   const [Evenementen, setEvenement] = useState([]);
 
   const fetchEvenementen = () => {
-    fetch('https://localhost:3001/api/Evenement').
+    fetch(`${Urls.backend}/api/Evenement`).
     then((response) => response.json()).
     then((data) => 
     {
@@ -68,7 +69,7 @@ export function TicketPagina(props) {
     }, []);
 
     function checkAvailable() {
-        fetch("https://localhost:3001/api/Evenement/" + id + "/a")
+        fetch(`${Urls.backend}/api/Evenement/${id}/a`)
             .then(r => r.json())
             .then(o => {
                 setRang1(o[0] ? o[0] : false)
@@ -78,7 +79,7 @@ export function TicketPagina(props) {
     }
 
     function fetchEvent() {
-        fetch('https://localhost:3001/api/Evenement/' + id)
+        fetch(`${Urls.backend}/api/Evenement/${id}`)
             .then(r => r.json())
             .then(o => {
                 setEvenement(o)
@@ -88,7 +89,7 @@ export function TicketPagina(props) {
 
     function fetchTicket() {
         setHidden(false)
-        fetch('https://localhost:3001/api/Ticket/addTicket', {
+        fetch(`${Urls.backend}/api/Ticket/addTicket`, {
             "method": "POST",
             "headers": {'Content-Type': 'application/json'},
             "body": JSON.stringify({
@@ -141,7 +142,7 @@ export function TicketPagina(props) {
 
                             <input id="amount" value={prijs} name="amount" type="text" hidden={true} aria-hidden={true}/>
                             <input id="reference" value={ref} name="reference" type="text" hidden={true} aria-hidden={true}/>
-                            <input id="url" value="https://localhost:3001/api/Ticket/Status" name="url" type="text" hidden={true} aria-hidden={true}/>
+                            <input id="url" value={`${Urls.backend}/api/Ticket/Status`} name="url" type="text" hidden={true} aria-hidden={true}/>
                         </div>
 
                 </div>

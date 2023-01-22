@@ -1,11 +1,13 @@
 import { Link } from "react-router-dom";
 import React, {useEffect, useState} from "react";
 import "../tailwind.css";
+import Urls from "../Urls";
+
 export function EvenementenHP() {
   const [Evenementen, setEvenement] = useState([]);
 
   const fetchEvenementen = () => {
-    fetch('https://localhost:3001/api/Evenement').
+    fetch(`${Urls.backend}/api/Evenement`).
     then((response) => response.json()).
     then((data) => 
     {

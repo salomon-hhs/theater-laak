@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {Link} from 'react-router-dom';
-
+import Urls from "../Urls";
 
 export default function ZaalToevoegen(){
     const[rang1, setRang1]= useState(10)
@@ -8,7 +8,7 @@ export default function ZaalToevoegen(){
     const[rang3, setRang3]= useState(0)
 
     function handleAddEvent() {
-        let url = "https://localhost:3001/api/Zaal?"
+        let url = `${Urls.backend}/api/Zaal?`
         if (rang1 > 0) {url += "rang1="+rang1}
         if (rang2 > 0) {url += "&rang2="+rang2}
         if (rang3 > 0) {url += "&rang3="+rang3}
