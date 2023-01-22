@@ -10,3 +10,4 @@ Scenario: AanmakenWerkt
     When evenement met titel Hallo wordt aangemaakt
     Then bestaat er een evenement met titel Welkom
     And bestaat er een evenement met titel Hallo
+    
