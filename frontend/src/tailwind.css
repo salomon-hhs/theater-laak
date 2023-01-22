@@ -137,6 +137,16 @@ position: absolute;
   color:black
 }
 
+#beschrijving{
+  height: 100px;
+
+}
+
+#zaalbeschrijving{
+  height: 100px;
+ 
+}
+
 input[type=radio] {
   border: 1px solid #fff;
   padding: 0.5em;
