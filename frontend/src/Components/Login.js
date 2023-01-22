@@ -18,8 +18,14 @@ export default function Login(){
             })
         }).then(async (r) => {
             if (r.status === 200) {
-                let name = await r.json().then(u => u.name);
+                let id;
+                let name;
+                await r.json().then(u => {
+                    name = u.name;
+                    id = u.id;
+                });
                 sessionStorage.setItem('user', name);
+                sessionStorage.setItem('userId', id);
                 window.location.assign("/");
             }
         })

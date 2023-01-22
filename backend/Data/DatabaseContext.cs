@@ -39,7 +39,7 @@ public class DatabaseContext : IdentityDbContext
         
         //gebruiker *--* ticket relation
         modelBuilder.Entity<Ticket>()
-            .HasKey(t => new { t.Id, t.EvenementId, t.GebruikerId });
+            .HasKey(t => new { t.Id});
         modelBuilder.Entity<Ticket>()
             .HasOne(t => t.Gebruiker)
             .WithMany(g => g.Tickets)
@@ -62,12 +62,8 @@ public class DatabaseContext : IdentityDbContext
         //zaal 1--* rang relation
         modelBuilder.Entity<Zaal>()
             .HasMany(z => z.Rangen)
-            .WithOne(r => r.Zaal);
-    }
-
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        optionsBuilder.UseSqlite("data source=laak.db");
+            .WithOne(r => r.Zaal)
+            .HasForeignKey(r => r.ZaalId);
     }
 
     public DbSet<Gebruiker> Gebruikers { get; set; }

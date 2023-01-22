@@ -21,6 +21,12 @@ public class MockEvent
     
     [Required(ErrorMessage = "beschrijving is required")]
     public string beschrijving { get; set; }
+
+    [Required(ErrorMessage = "img is required")]
+    public string img { get; set; }
+
+    [Required(ErrorMessage = "alt-text is required")]
+    public string alt { get; set; }
 }
 
 namespace backend.Controllers
@@ -64,6 +70,44 @@ namespace backend.Controllers
 
             return evenement;
         }
+        
+        // GET: api/Evenement/5/a
+        [HttpGet("{id}/a")]
+        public async Task<ActionResult<List<Boolean>>> GetAvailability(int id)
+        {
+            List<Boolean> result = new List<bool>();
+
+            if (_context.Evenementen == null || _context.Zalen == null)
+            {
+                return NotFound();
+            }
+            var evenement = await _context.Evenementen.FindAsync(id);
+
+            if (evenement == null)
+            {
+                return NotFound();
+            }
+
+            var rangen = _context.Rangen.Where(r => r.Zaal.Id == evenement.ZaalId);
+
+            if (!rangen.Any())
+            {
+                return NotFound();
+            }
+
+            foreach (Rang rang in rangen)
+            {
+                result.Add(_context.Tickets.Count(t => t.Rang == rang && t.EvenementId == evenement.Id) < rang.Capaciteit);
+            }
+
+            if (result.Any())
+            {
+                return result;
+            }
+
+            return NotFound();
+        }
+
 
         // PUT: api/Evenement/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
@@ -108,7 +152,7 @@ namespace backend.Controllers
                 return Problem("Entity set 'DatabaseContext.Evenementen'  is null.");
             }
 
-            Evenement evenement = new Evenement() { Datum = e.datum, titel = e.titel, beschrijving = e.beschrijving, Zaal = _context.Zalen.Find(e.zaal) };
+            Evenement evenement = new Evenement() { Datum = e.datum, titel = e.titel, beschrijving = e.beschrijving, Zaal = _context.Zalen.Find(e.zaal), img = e.img, alt = e.alt };
             _context.Evenementen.Add(evenement);
             await _context.SaveChangesAsync();
 

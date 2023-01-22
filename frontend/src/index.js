@@ -11,13 +11,15 @@ import Login from './Components/Login';
 import Register from './Components/Register';
 import PasswVergeten from './Components/PasswVergeten';
 import OverOns from './Components/OverOns';
+import Doneren from './DonerenPagina/Doneren';
 import reportWebVitals from './reportWebVitals';
-import { EvenementenPagina } from './EvenementPagina/ContentEV';
+import { EvenementenPagina, TicketPagina } from './EvenementPagina/ContentEV';
 import { HomePagina } from './HomePagina/ContentHP';
 import EvenementenToevoegen from './Components/EvenementenToevoegen';
 import PrintTicket from './Components/PrintTicket';
 import AdminMenu from './Components/AdminMenu';
 import ZaalToevoegen from './Components/ZaalToevoegen';
+import Betaling from "./BetaalPagina/Betaal";
 
 
 const router = createBrowserRouter([
@@ -56,7 +58,23 @@ const router = createBrowserRouter([
 {
   path: "/admin",
   element: <Layout><AdminMenu/></Layout> 
-}
+},
+{
+    path: "/Evenementen",
+    element: <Layout><EvenementenPagina/></Layout> 
+  },
+  {
+    path: "/doneren",
+    element: <Layout><Doneren/></Layout>
+  }, 
+  {
+    path: "/Ticket/:id",
+    element: <Layout><TicketPagina/></Layout> 
+  },
+  {
+    path: "/Betaling/:status",
+    element: <Layout><Betaling/></Layout>
+  }
 ])
 
 ReactDOM.createRoot(document.getElementById("root")).render(
