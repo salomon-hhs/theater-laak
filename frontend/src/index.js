@@ -19,8 +19,7 @@ import EvenementenToevoegen from './Components/EvenementenToevoegen';
 import PrintTicket from './Components/PrintTicket';
 import AdminMenu from './Components/AdminMenu';
 import ZaalToevoegen from './Components/ZaalToevoegen';
-import Betaling from "./BetaalPagina/Betaal";
-
+import Betaling from './Betaalpagina/Betaal';
 
 const router = createBrowserRouter([
   {
