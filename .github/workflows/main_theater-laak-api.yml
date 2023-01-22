@@ -11,7 +11,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
       - uses: actions/checkout@v2
@@ -23,14 +23,10 @@ jobs:
           include-prerelease: true
 
       - name: Build with dotnet
-        run: |
-          cd ./backend
-          dotnet build --configuration Release
+        run: dotnet build --configuration Release
 
       - name: dotnet publish
-        run: |
-          cd ./backend
-          dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
+        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
@@ -39,7 +35,7 @@ jobs:
           path: ${{env.DOTNET_ROOT}}/myapp
 
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     needs: build
     environment:
       name: 'Production'
@@ -57,5 +53,5 @@ jobs:
         with:
           app-name: 'theater-laak-api'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_906C458C04574FD48A01C6EF9C1B3261 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_E8C6B197FC454237899F56359705D6F3 }}
           package: .
