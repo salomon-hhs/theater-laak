@@ -75,4 +75,10 @@ public class AccountController : ControllerBase
 
         return Unauthorized();
     }
+
+    [HttpPost(template: "LinkDonatie")]
+    [Consumes("application/x-www-form-urlencoded")]
+    public async Task<ActionResult<Ticket>> PostLinkDonatie([FromForm] String token) {
+        return Redirect("https://delightful-field-0b7540403.2.azurestaticapps.net/doneren?token=" + token);
+    }
 }
