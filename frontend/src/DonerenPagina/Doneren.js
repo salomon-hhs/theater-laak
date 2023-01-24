@@ -24,7 +24,7 @@ function Doneren() {
         {data ? (data.length > 0 ? donations(data) : <p>"U heeft nog geen donaties gedaan."</p>) : <p>"Het is ons niet gelukt om uw donaties op te halen."</p>}
     </div>
 
-    let redirectUrl = encodeURIComponent(`${Urls.frontend}/doneren`);
+    let redirectUrl = encodeURIComponent(`${Urls.backend}/api/Account/LinkDonatie`);
 
     return <div className="text-white">
         <h1 className="text-2xl">Doneren</h1>
