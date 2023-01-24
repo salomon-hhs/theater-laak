@@ -78,7 +78,7 @@ public static class Program
         app.UseCors((bob) =>
         {
             bob.AllowAnyHeader();
-            bob.AllowAnyOrigin();
+            //bob.AllowAnyOrigin();
             bob.AllowAnyMethod();
         });
 
