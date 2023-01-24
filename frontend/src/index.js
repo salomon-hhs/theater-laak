@@ -15,6 +15,11 @@ import Doneren from './DonerenPagina/Doneren';
 import reportWebVitals from './reportWebVitals';
 import { EvenementenPagina, TicketPagina } from './EvenementPagina/ContentEV';
 import { HomePagina } from './HomePagina/ContentHP';
+import EvenementenToevoegen from './Components/EvenementenToevoegen';
+import PrintTicket from './Components/PrintTicket';
+import AdminMenu from './Components/AdminMenu';
+import ZaalToevoegen from './Components/ZaalToevoegen';
+import Betaling from './Betaalpagina/Betaal';
 
 const router = createBrowserRouter([
   {
@@ -38,6 +43,22 @@ const router = createBrowserRouter([
     element: <Layout><OverOns /></Layout>
   },
   {
+    path: "/print-ticket",
+    element: <Layout><PrintTicket/></Layout> 
+ },
+ {
+  path: "/evenementen-toevoegen",
+  element: <Layout><EvenementenToevoegen/></Layout> 
+},
+{
+  path: "/zaal-toevoegen",
+  element: <Layout><ZaalToevoegen/></Layout> 
+},
+{
+  path: "/admin",
+  element: <Layout><AdminMenu/></Layout> 
+},
+{
     path: "/Evenementen",
     element: <Layout><EvenementenPagina/></Layout> 
   },
@@ -48,6 +69,10 @@ const router = createBrowserRouter([
   {
     path: "/Ticket/:id",
     element: <Layout><TicketPagina/></Layout> 
+  },
+  {
+    path: "/Betaling/:status",
+    element: <Layout><Betaling/></Layout>
   }
 ])
 

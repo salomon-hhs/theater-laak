@@ -6,7 +6,7 @@ function Footer() {
         <div className="x-responsive flex flex-wrap justify-between py-8 flex-col sm:flex-row">
             <FooterSection title="Links">
                 <FooterLink url="/evenementen" text="Evenementen" /><br />
-                <FooterLink url="/doneer" text="Doneer" /><br/>
+                <FooterLink url="/doneren" text="Doneer" /><br/>
                 <FooterLink url="/over-ons" text="Over Ons" />
             </FooterSection>
             

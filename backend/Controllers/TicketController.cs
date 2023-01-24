@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using backend.Data;
+using Newtonsoft.Json;
 
 public class TicketInfo
 {
@@ -19,6 +20,7 @@ public class TicketInfo
     
     [Required(ErrorMessage = "Rank number is required")]
     public int rank { get; set; }
+    
 }
 
 public class UserEvent
@@ -47,10 +49,9 @@ namespace backend.Controllers
         
 
         [HttpPost("addTicket")]
-        public async Task<ActionResult> PostEvenement([FromBody] TicketInfo t)
+        public async Task<ActionResult> PostTicket([FromBody] TicketInfo t)
         {
-
-            if (_context.Rangen == null || _context.Evenementen == null)
+            if (_context.Rangen == null || _context.Evenementen == null || _context.Gebruikers == null)
             {
                 return NotFound();
             }
@@ -62,8 +63,6 @@ namespace backend.Controllers
             {
                 return NotFound();
             }
-            
-            int id = _context.Tickets.Count();
 
             int number = _context.Tickets.Count(o => o.EvenementId == e.Id && o.Rang == rank);
 
@@ -75,12 +74,13 @@ namespace backend.Controllers
             Ticket ticket = new Ticket()
             {
                 Evenement = e, EvenementId = e.Id, Gebruiker = _context.Gebruikers.Find(t.UserId),
-                GebruikerId = t.UserId, Rang = rank , Id = id
+                GebruikerId = t.UserId, Rang = rank, TicketBetaald = false
             };
             _context.Tickets.Add(ticket);
             await _context.SaveChangesAsync();
             
             return CreatedAtAction("GetTicket", new { id = ticket.Id }, ticket);
+
         }
         
         [HttpGet]
@@ -162,6 +162,34 @@ namespace backend.Controllers
             Rang? rank = ranks[t.rank - 1];
 
             return rank;
+        }
+
+    [HttpPost("Status")]
+    [Consumes("application/x-www-form-urlencoded")]
+    public async Task<ActionResult<Ticket>> PostStatus([FromForm] bool succes, [FromForm] int reference)
+    {
+        if (!succes)
+        {
+            return Redirect("https://delightful-field-0b7540403.2.azurestaticapps.net/Betaling/false");
+        }
+
+        //should validate payment status with payment provider here >:)
+
+        int id = reference;
+         if (_context.Tickets == null)
+            {
+                return NotFound();
+            }
+            var ticket = await _context.Tickets.FindAsync(id);
+            
+            if (ticket == null)
+            {
+                return NotFound();
+            }
+
+            ticket.TicketBetaald = true;
+            await _context.SaveChangesAsync();
+            return Redirect("https://delightful-field-0b7540403.2.azurestaticapps.net/Betaling/true");
         }
     }
 }

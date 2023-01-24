@@ -3,19 +3,18 @@ import {Link} from 'react-router-dom';
 import PasswordChecklist from "react-password-checklist"
 import invalidFoto from '../assets/invalid.png'; 
 import validFoto from '../assets/valid.png'; 
+import Urls from "../Urls";
 
 
-
-export default function Register(props){
+export default function Register(){
     const[vnaam,setVnaam]= useState(''); 
     const[email,setEmail]= useState(''); /*inside the useState is the initial value*/
     const[passw,setPassw]= useState('');
     const[passw_conf,setPassw_conf]= useState('');  
     
     const handleSubmit = async (e)=>{ /*e stands for event handler*/
-        e.preventDefault(); {/*if you don't don't do this the page is going to get reloaded and then you will lose the state*/}
-        //console.log(email);
-        await fetch("https://theater-laak-api.azurewebsites.net/api/Account/registreer", {
+        e.preventDefault(); //if you don't don't do this the page is going to get reloaded and then you will lose the state
+        await fetch(`${Urls.backend}/api/Account/registreer`, {
             "method": "POST",
             "headers": { 'Content-Type': 'application/json'},
             "body": JSON.stringify({
@@ -36,19 +35,20 @@ export default function Register(props){
                 <form className="register-form text-black" onSubmit={handleSubmit}>
 
                     <label htmlFor="voornaam">Naam</label>
-                    <input value={vnaam} onChange={(e) => setVnaam(e.target.value)} name="voornaam" id="vnaam" />
+                    <input value={vnaam} onChange={(e) => setVnaam(e.target.value)} name="voornaam" id="vnaam" 
+                    />
 
                     <label htmlFor="email">Email</label>
-                    <input value={email} onChange={(e) => setEmail(e.target.value)} type="email"
-                     // pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"                    
+                    <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" id="email"
+                     pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"                    
                     />
              
                     <label htmlFor="password">Wachtwoord</label>
-                    <input value={passw} onChange={(e) => setPassw(e.target.value)} type="password"
+                    <input value={passw} onChange={(e) => setPassw(e.target.value)} type="password" id="password"
                     />     
 
                     <label htmlFor="passwordConformation">Wachtwoord herhalen</label>
-                    <input value={passw_conf} onChange={(e) => setPassw_conf(e.target.value)} type="password"
+                    <input value={passw_conf} onChange={(e) => setPassw_conf(e.target.value)} type="password" id="passwordConformation"
                     />  
 
                     <PasswordChecklist className="text-white "
@@ -70,7 +70,7 @@ export default function Register(props){
                     />
                          
 
-                    <button className="bg-white hover:bg-red-600 py-2 px-8 rounded text-black m-5" type="submit">Account Aanmaken</button>
+                    <button className="bg-white hover:bg-red-600 py-2 px-8 rounded text-black m-5" type="submit" id="registerbtn">Account Aanmaken</button>
                 </form>
 
                 <Link to={'/inloggen'} className="link-btn m-5">Heeft u al een account? Dan kunt u hier inloggen.</Link>

@@ -39,7 +39,7 @@ public sealed class EvenementStepDefinitions
     [Given("evenement met titel (.*) bestaat")]
     public async Task EvenementBestaat(string titel)
     {
-        var evenement = new Evenement() { Datum = DateTime.Now, titel = titel, beschrijving = "Beschrijving", Zaal = null };
+        var evenement = new Evenement() { Datum = DateTime.Now, titel = titel, beschrijving = "Beschrijving", Zaal = null, img = "test", alt = "test"};
         await _databaseData.Context.Evenementen.AddAsync(evenement);
         await _databaseData.Context.SaveChangesAsync();
     }
@@ -47,7 +47,7 @@ public sealed class EvenementStepDefinitions
     [When("evenement met titel (.*) wordt aangemaakt")]
     public async Task EvenementMetNaamAanmaken(String titel)
     {
-        var mockEvent = new MockEvent() { datum = DateTime.Now, titel = titel, beschrijving = "Beschrijving", zaal = 0 };
+        var mockEvent = new MockEvent() { datum = DateTime.Now, titel = titel, beschrijving = "Beschrijving", zaal = 0, img = "test", alt = "test" };
         var request = new RestRequest("api/Evenement").AddJsonBody(mockEvent);
         response = await _client.PostAsync(request);
     }
@@ -73,4 +73,27 @@ public sealed class EvenementStepDefinitions
         var bestaat = await _databaseData.Context.Evenementen.AnyAsync(e => e.titel == titel);
         Assert.True(bestaat);
     }
+    
+    [Given("zaal met toegankelijkheid (.*) bestaat")]
+    public async Task Zaalbestaat(bool toegankelijkheid)
+    {
+        await _databaseData.Context.Zalen.AddAsync(new Zaal() { Toegankelijk = false });
+        await _databaseData.Context.SaveChangesAsync();
+    }
+
+    [When("zaal met toegankelijkheid (.*) wordt toegevoegd")]
+    public async Task ZaalToevoegen(bool toegankelijkheid)
+    {
+        var request = new RestRequest("api/Zaal?rang1=10");
+        response = await _client.PostAsync(request);
+        
+    }
+
+    [Then("bestaat er een zaal met toegankelijkheid (.*)")]
+    public async Task ZaalBestaat(bool toegankelijkheid)
+    {
+        var bestaat = await _databaseData.Context.Zalen.AnyAsync(z => z.Toegankelijk == toegankelijkheid);
+        Assert.True(bestaat);
+    }
+
 }

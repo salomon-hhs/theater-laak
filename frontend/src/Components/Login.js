@@ -1,15 +1,16 @@
 import React, {useState} from "react";
 import {Link, redirect} from 'react-router-dom';
 import ReCAPTCHA from "react-google-recaptcha";
+import Urls from "../Urls";
 
 
-export default function Login(props){ /*props is a way to pass on value to children elements/components */
+export default function Login(){ 
     const[gbnaam,setGbnaam]= useState(''); /*inside the useState is the initial value*/
     const[passw,setPassw]= useState('');
 
-    const handleSubmit = async (e) => { /*e stands for event handler*/
+    const handleSubmit = async (e) => { 
         e.preventDefault();
-        await fetch("https://theater-laak-api.azurewebsites.net/api/Account/login", {
+        await fetch(`${Urls.backend}/api/Account/login`, {
             "method": "POST",
             "headers": { 'Content-Type': 'application/json'},
             "body": JSON.stringify({
@@ -44,13 +45,13 @@ export default function Login(props){ /*props is a way to pass on value to child
                 <form className="login-form text-black" onSubmit={handleSubmit}>
 
                     <label htmlFor="gbnaam">Gebruikersnaam</label>
-                    <input value={gbnaam} onChange={(e) => setGbnaam(e.target.value)} type="text"/>
+                    <input value={gbnaam} onChange={(e) => setGbnaam(e.target.value)} type="text" id="gbnaam"/>
              
 
                     <label htmlFor="password">Wachtwoord</label>
-                    <input value={passw} onChange={(e) => setPassw(e.target.value)} type="password"/>
+                    <input value={passw} onChange={(e) => setPassw(e.target.value)} type="password" id="password"/>
                     
-                    <button className="bg-red-900 hover:bg-red-700 py-2 px-8 rounded text-white m-5" type="submit">Inloggen</button>
+                    <button className="bg-red-900 hover:bg-red-700 py-2 px-8 rounded text-white m-5" type="submit" id="loginbtn">Inloggen</button>
                 </form>
 
                 <ReCAPTCHA
@@ -59,7 +60,7 @@ export default function Login(props){ /*props is a way to pass on value to child
                 />
 
                 <button className="link-btn">
-                    <Link to={'/registreren'}> geen account? Account aanmaken</Link>
+                    <Link to={'/registreren'}> Geen account? Account aanmaken</Link>
                 </button>
                 <br/>
                 <button className="link-btn m-5">
