@@ -75,12 +75,12 @@ public static class Program
 
         app.MapControllers();
 
-        app.UseCors((bob) =>
-        {
-            bob.AllowAnyHeader();
+        //app.UseCors((bob) =>
+        //{
+            //bob.AllowAnyHeader();
             //bob.AllowAnyOrigin();
-            bob.AllowAnyMethod();
-        });
+            //bob.AllowAnyMethod();
+        //});
 
         return app;
     }
